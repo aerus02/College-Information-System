@@ -28,6 +28,7 @@ import com.softwareproject.collegeinformationsystem.services.StudentService;
 import com.softwareproject.collegeinformationsystem.services.UserService;
 import com.softwareproject.collegeinformationsystem.services.TimeTableService;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -456,22 +457,22 @@ public class RequestController {
         if(userType == 2){
             Faculty faculty = facultyService.FindByUserIDService(user.getUserID());
             List<Integer> courseIDs = courseService.FindCourseIDsByFacultyIDService(faculty.getFacultyID());
-            int [][] timeTable = timeTableService.FindTimeTableByCourseIDsService(courseIDs);
+            ArrayList<ArrayList<Integer>> timeTable = timeTableService.FindTimeTableByCourseIDsService(courseIDs);
             mv = new ModelAndView("timetablepagefaculty");
             List<Course>courses = courseService.FindByCourseIDListService(courseIDs);
-            mv.addObject(courses);
-            mv.addObject(timeTable);
+            mv.addObject("courses",courses);
+            mv.addObject("timeTable",timeTable);
             return mv;
             
         }
         else if(userType == 3){
             Student student = studentService.FindByUserIDService(user.getUserID());
             List<Integer> courseIDs = attendanceService.FindCourseIDsByStudentIDService(student.getStudentID());
-            int [][] timeTable = timeTableService.FindTimeTableByCourseIDsService(courseIDs);
+            ArrayList<ArrayList<Integer>> timeTable = timeTableService.FindTimeTableByCourseIDsService(courseIDs);
             mv = new ModelAndView("timetablepagestudent");
             List<Course>courses = courseService.FindByCourseIDListService(courseIDs);
-            mv.addObject(courses);
-            mv.addObject(timeTable);
+            mv.addObject("courses",courses);
+            mv.addObject("timeTable",timeTable);
             return mv;
         }
         else{

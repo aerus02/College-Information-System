@@ -37,15 +37,16 @@
             <button>Notices</button>
             </form>
             <div>Notices</div>
-            <form action="/profile">
+<!--            <form action="/profile">
             <button>Profile </button>
             </form>
-            <div>Profile</div>	
+            <div>Profile</div>	-->
+            <!--Check-->
             
-            <form action="/attendance">
+<!--            <form action="/attendance">
             <button>Attendance</button>
             </form>
-            <div>Attendance</div>
+            <div>Attendance</div>-->
             <form action="/courses-list">
             <button>Courses List </button>
             </form>
@@ -65,11 +66,11 @@
             <div>Messaging</div>
             <br>
             
-            
+<!--            
             <form action="/timetable">
             <button>Timetable </button>
             </form>
-            <div>TimeTable</div>
+            <div>TimeTable</div>-->
 <!--            <form action="/others-profile">
             <button>Others Profile </button>
             </form>

@@ -13,16 +13,6 @@
             <title>CIS-Home</title>
         </head>
         <body>
-            <h1>This is the Home Page</h1>
-            Welcome to home page - faculty
-            <div>   ${username} </div>
-            <form action="/logout">
-            <button>logout </button>
-            </form>
-            <form action="/change-password">
-            <button>change password </button>
-            </form>
-            
             
              
             <h1>This is the Home Page - faculty</h1>
@@ -51,10 +41,10 @@
             </form>
             <div>Profile</div>	
             
-<!--            <form action="/attendance">
+            <form action="/attendance">
             <button>Attendance</button>
             </form>
-            <div>Attendance</div>-->
+            <div>Attendance</div>
             <form action="/courses-list">
             <button>Courses List </button>
             </form>

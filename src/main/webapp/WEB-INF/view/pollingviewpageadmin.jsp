@@ -1,10 +1,7 @@
 
 
-
-
-
-
-
+<%@page import="com.softwareproject.collegeinformationsystem.model.Polling" %>
+<%@page import="java.util.List" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,13 +13,36 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>CIS</title>
+            <title>CIS-Polling</title>
         </head>
         <body>
             <h1>This is polling page</h1>
             
 
-                ${polls}
+                
+               <% 
+           int i = 1;
+           List<Polling> polls = (List<Polling>)request.getAttribute("polls");
+          
+            %>
+            <%
+            if(polls != null){
+            for(Polling t: polls){
+            %>
+            <table>
+                <tr> <%=i++%> . <%=t.getHeading() %></tr> 
+                <tr> <%= t.getDescription()%> </tr>
+                <tr> <%= t.getOption1()%> </tr>
+                <tr> <%= t.getOption2()%> </tr>
+                <tr> <%= t.getOption3()%> </tr>
+                <tr> <%= t.getOption4()%> </tr>
+                <tr>Date Created : <%= t.getDateCreated()%></tr>
+           </table>
+             <br>
+            <%  }}else{
+            %>
+            <h3>No polls to display</h3>
+             <%}%>
 
         </body>
     </html>

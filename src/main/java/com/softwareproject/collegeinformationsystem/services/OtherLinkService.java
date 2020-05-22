@@ -30,7 +30,8 @@ public class OtherLinkService {
         List<OtherLink> otherLinks = new ArrayList<>();
         
         Iterable<OtherLink> iterableLinks = otherLinkRepository.findAll();
-  
+//        System.out.println("Other links service after repo is called");
+//        System.out.println(iterableLinks);
         for (OtherLink t : iterableLinks) 
             otherLinks.add(t); 
         return otherLinks;

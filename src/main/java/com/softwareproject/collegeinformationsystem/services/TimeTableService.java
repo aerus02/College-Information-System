@@ -44,7 +44,7 @@ public class TimeTableService {
        return timeTable.get(0);
     }
     
-    public int[][] FindTimeTableByCourseIDsService(List<Integer> courseIDs){
+    public ArrayList<ArrayList<Integer>> FindTimeTableByCourseIDsService(List<Integer> courseIDs){
         TimeTable temporaryTable;
         int j;
         int [][] arr = new int[5][9];
@@ -57,22 +57,32 @@ public class TimeTableService {
             if(temporaryTable == null) continue;
             j = temporaryTable.getTimings1();
             if(j != -1){
-                arr[(j-1)/5][j%9] = temporaryTable.getCourseID();
+                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
             }
             j = temporaryTable.getTimings2();
             if(j != -1){
-                arr[(j-1)/5][j%9] = temporaryTable.getCourseID();
+                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
             }
              j = temporaryTable.getTimings3();
             if(j != -1){
-                arr[(j-1)/5][j%9] = temporaryTable.getCourseID();
+                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
             }
              j = temporaryTable.getTimings4();
             if(j != -1){
-                arr[(j-1)/5][j%9] = temporaryTable.getCourseID();
+                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
             }
         }
-        return arr;
+        ArrayList<ArrayList<Integer>> timeTableList = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
+        for(int i = 0;i < 5; ++i){
+            for(j = 0; j < 9; ++j) temp.add(j,arr[i][j]);
+            timeTableList.add(i,temp);
+            temp = new ArrayList<>();
+            
+        }
+        
+        
+        return timeTableList;
         
     }
     

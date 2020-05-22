@@ -1,6 +1,7 @@
 
 
-
+<%@page import="com.softwareproject.collegeinformationsystem.model.OtherLink" %>
+<%@page import="java.util.List" %>
 
 
 
@@ -15,13 +16,38 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>CIS</title>
+            <title>CIS-Otherlinks</title>
         </head>
         <body>
             <h1>This is otherlinksview page</h1>
             
+               
+            <table>
+                <% 
 
-                ${otherLinks}
+                    int i = 1;
+                    List<OtherLink> otherLinksList = (List<OtherLink>)request.getAttribute("othLin");
+
+                %>
+                <%
+                    if(otherLinksList != null){
+                    for(OtherLink t: otherLinksList){
+                %>
+                <tr>
+                    <td> <%=i++%> </td> 
+                    <td> <%= t.getDescription()%></td>
+                    <td> <%= t.getUrl()%> </td>
+
+
+                 </tr>
+                <%  }
+                    }
+                    else{
+                %>
+                <h3>No data to display </h3>
+                <%    }
+                %>
+            </table>
 
         </body>
     </html>

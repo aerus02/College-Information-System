@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author aerus02
  */
+@Controller
 public class OtherLinksController {
     
     @Autowired
@@ -73,7 +75,7 @@ public class OtherLinksController {
         
         List<OtherLink> otherLinks = otherLinkService.FindAllService();
         mv = new ModelAndView("otherlinksviewpage");
-        mv.addObject(otherLinks);
+        mv.addObject("othLin",otherLinks);
         return mv;
     
     }

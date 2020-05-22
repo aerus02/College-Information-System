@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author aerus02
  */
+@Controller
 public class NoticeViewController {
     //One notice per class(Course->0)or for all-(0),def :-1;
     //admin-shows all,student,faculty-courses related
@@ -110,16 +112,16 @@ public class NoticeViewController {
         if(userType == 1){
             notices = noticeService.FindByCourseIDService(0);
             mv = new ModelAndView("noticesviewpageadmin");
-            mv.addObject(notices);
+            mv.addObject("notices",notices);
             return mv;
         
         }
         else if(userType == 2){
             Faculty faculty = facultyService.FindByUserIDService(user.getUserID());
             List<Integer>courseIDs = courseService.FindCourseIDsByFacultyIDService(faculty.getFacultyID());
-            notices = noticeService. FindNoticesByCourseIDsService(courseIDs);
+            notices = noticeService.FindNoticesByCourseIDsService(courseIDs);
             mv = new ModelAndView("noticesviewpagefaculty");
-            mv.addObject(notices);
+            mv.addObject("notices",notices);
             return mv;
             
         }
@@ -128,7 +130,7 @@ public class NoticeViewController {
             List<Integer>courseIDs = attendanceService.FindCourseIDsByStudentIDService(student.getStudentID());
             notices = noticeService.FindNoticesByCourseIDsService(courseIDs);
             mv = new ModelAndView("noticesviewpagestudent");
-            mv.addObject(notices);
+            mv.addObject("notices",notices);
             return mv;
         }
     }

@@ -6,6 +6,8 @@
 package com.softwareproject.collegeinformationsystem.reqcontroller;
 
 import com.softwareproject.collegeinformationsystem.model.User;
+import com.softwareproject.collegeinformationsystem.model.Course;
+import com.softwareproject.collegeinformationsystem.model.Faculty;
 import com.softwareproject.collegeinformationsystem.model.Student;
 import com.softwareproject.collegeinformationsystem.repository.AttendanceRepository;
 import com.softwareproject.collegeinformationsystem.repository.CourseRepository;
@@ -20,6 +22,7 @@ import com.softwareproject.collegeinformationsystem.services.StudentService;
 import com.softwareproject.collegeinformationsystem.services.TimeTableService;
 import com.softwareproject.collegeinformationsystem.services.UserService;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -71,7 +74,7 @@ public class AttendanceViewController {
     
     
      @RequestMapping("/attendance")//should also send courseID for fac -is string
-    public ModelAndView AttendanceFunction(@RequestParam()int courseID,HttpServletRequest req,HttpServletResponse res){
+    public ModelAndView AttendanceFunction(HttpServletRequest req,HttpServletResponse res){
         System.out.println("AttendanceFunction is called in controller");
         boolean check = checkLogin(req);
         if(!check){
@@ -83,7 +86,7 @@ public class AttendanceViewController {
                 return new ModelAndView("index");
             }
         }
-        
+        //for fac,displays courses list,from there to indiv attendance and update
         HttpSession session = req.getSession();
         String username = (String)session.getAttribute("username");
         System.out.println((String)session.getAttribute("username") + (String)session.getAttribute("password"));
@@ -99,28 +102,46 @@ public class AttendanceViewController {
         User user = userService.FindByUsernameService(username);
         ModelAndView mv;
         int userType = (int)session.getAttribute("userType");
-        if(userType == 2 && courseID <= 0){
-            try{
-                res.sendRedirect("/home");
-            }
-            catch(Exception e){
-                System.out.println(e +" -error");
-                return new ModelAndView("homepagefaculty");
-            }
-        }
+//        if(userType == 2 && courseID <= 0){
+//            try{
+//                res.sendRedirect("/home");
+//            }
+//            catch(Exception e){
+//                System.out.println(e +" -error");
+//                return new ModelAndView("homepagefaculty");
+//            }
+//        }
         //convert string collegeid for course to courseid
         if(userType == 2){
-            ArrayList<ArrayList<Integer>> attendance = attendanceService.FindFacultyAttendanceByCourseIDService(courseID);
+           // ArrayList<ArrayList<Integer>> attendance = attendanceService.FindFacultyAttendanceByCourseIDService(courseID);
             mv = new ModelAndView("attendanceviewpagefaculty");
-            mv.addObject(attendance);
+            Faculty faculty = facultyService.FindByUserIDService(user.getUserID());
+            int facultyID = faculty.getFacultyID();
+            
+            System.out.println("In attendance controller fac");
+            List<Course> coursesList = courseService.FindByFacultyIDService(facultyID);
+            
+            mv.addObject("courLis",coursesList);
+            mv.addObject(coursesList);
             return mv;//has studentid as 4th one ,0-3 as attendances
         }
         else if(userType == 3){
            Student student = studentService.FindByUserIDService(user.getUserID());
            
            ArrayList<ArrayList<Integer>> attendance = attendanceService.FindStudentAttendanceByStudentIDService(student.getStudentID());
+           ArrayList<Integer> courseIDs = new ArrayList<>();
+           List<Course>coursesList;
+           if(attendance != null){
+                for(int i = 0; i < attendance.size();++i){
+                    courseIDs.add(i,attendance.get(i).get(4));
+                }   
+                coursesList = courseService.FindByCourseIDListService(courseIDs);
+           }
+           else coursesList = null;
+           
            mv = new ModelAndView("attendanceviewpagestudent");
-           mv.addObject(attendance);//has courseid as 4th one ,0-3 as attendances
+           mv.addObject("attendance",attendance);//has courseid as 4th one ,0-3 as attendances
+           mv.addObject("coursesList",coursesList);
            return mv;                
         
         }

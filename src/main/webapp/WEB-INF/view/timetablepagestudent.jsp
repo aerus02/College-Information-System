@@ -1,5 +1,6 @@
 
-
+<%@page import="com.softwareproject.collegeinformationsystem.model.Course" %>
+<%@page import="java.util.List" %>
 
 
 
@@ -12,13 +13,50 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>CIS</title>
+            <title>CIS-TimeTable</title>
         </head>
         <body>
             <h1>This is timeTable page</h1>
             
 
-                ${timeTable}
+            <% 
+            int i ,j;
+            List<Course> courses = (List<Course>)request.getAttribute("courses");
+            List<List<Integer> > timeTable = (List<List<Integer> >)request.getAttribute("timeTable");
+         
+            if(courses != null){
+            %>
+            <table>
+            <%
+            for(i = 0; i < 5; ++i){%>
+            <tr>
+            <%
+                for(j = 0; j < 9; ++j){
+            %>
+            
+                <%
+                if(timeTable.get(i).get(j) == -1){%>
+                <td> -</td>
+                <%}
+                else{
+                %>
+                <td> <%=courses.get(timeTable.get(i).get(j)).getCourseName() %></td>
+                <%}
+                %>
+                
+             
+            <% }
+            %>
+            </tr>
+            <%
+               }
+            %>
+            </table>
+            <%}
+            else{
+            %>
+            <h3>No TimeTable to display </h3>
+            <% }%>
 
         </body>
     </html>

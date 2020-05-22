@@ -111,7 +111,7 @@ public class PollingViewController {
         if(userType == 1){
             polls = pollingService.FindByCourseIDService(0);
             mv = new ModelAndView("pollingviewpageadmin");
-            mv.addObject(polls);
+            mv.addObject("polls",polls);
             return mv;
         
         }
@@ -120,7 +120,7 @@ public class PollingViewController {
             List<Integer>courseIDs = courseService.FindCourseIDsByFacultyIDService(faculty.getFacultyID());
             polls = pollingService. FindPollingsByCourseIDsService(courseIDs);
             mv = new ModelAndView("pollingviewpagefaculty");
-            mv.addObject(polls);
+            mv.addObject("polls",polls);
             return mv;
             
         }
@@ -129,7 +129,7 @@ public class PollingViewController {
             List<Integer>courseIDs = attendanceService.FindCourseIDsByStudentIDService(student.getStudentID());
             polls = pollingService.FindPollingsByCourseIDsService(courseIDs);
             mv = new ModelAndView("pollingviewpagestudent");
-            mv.addObject(polls);
+            mv.addObject("polls",polls);
             return mv;
         }
     }
