@@ -59,13 +59,15 @@ public class PollingService {
         return pollingsList;
     }
     
-    public void DeleteByIDService(int pollID){
-        pollingRepository.deleteById(pollID);
-    }
-         
     public boolean ExistByIDService(int pollID){
         return pollingRepository.existsById(pollID);
     }
+    
+    public void DeleteByIDService(int pollID){
+        if(ExistByIDService(pollID))
+        pollingRepository.deleteById(pollID);
+    }
+         
     
     public long FindCountService(){
         return pollingRepository.count();
@@ -83,5 +85,7 @@ public class PollingService {
         pollingRepository.save(poll);
     }
     
-    
+    public Polling FindByIDService(int pollID){
+        return pollingRepository.findById(pollID).orElse(null);
+    }
 }

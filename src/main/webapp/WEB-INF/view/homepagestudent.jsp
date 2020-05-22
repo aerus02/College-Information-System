@@ -31,6 +31,7 @@
             <form action="/polling-view">
             <button>Polling </button>
             </form>
+            <div ><a href="/polling-view">Polling</a></div>
             <div>Polling</div>
             
              <form action="/notices-view">

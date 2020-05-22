@@ -77,7 +77,7 @@ public class NoticeViewController {
     }
     
     
-    @RequestMapping("/notices-view")//should also send courseID for fac -is string
+    @RequestMapping("/notices-view")
     public ModelAndView NoticesViewFunction(HttpServletRequest req,HttpServletResponse res){
         System.out.println("NoticesViewFunction is called in controller");
         boolean check = checkLogin(req);
@@ -107,7 +107,6 @@ public class NoticeViewController {
         ModelAndView mv;
         int userType = (int)session.getAttribute("userType");
         
-        //convert string collegeid for course to courseid
         List<Notice> notices;
         if(userType == 1){
             notices = noticeService.FindByCourseIDService(0);

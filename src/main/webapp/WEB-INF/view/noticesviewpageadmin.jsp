@@ -19,6 +19,11 @@
         <body>
             <h1>This is notices page</h1>
             
+            Create Here
+            <form action="/notices-create" method="POST" >
+                        <input type="hidden" name="type" value="1" />
+                        <button>Create Notice </button>
+            </form>
 
                 
             <% 
@@ -35,6 +40,10 @@
                 <tr> <%= t.getDescription()%> </tr>
                 <tr> <%= t.getCompleteDescription()%> </tr>
                 <tr>Date Created : <%= t.getDateCreated()%></tr>
+                   <tr><form action="/notices-delete" method="POST" >
+                       <input type="hidden" name="noticeID" value="<%= t.getNoticeID()%>" />
+                       <button onclick="alert('Notice will be deleted')">Delete</button>
+                   </form></tr>
              </table>
              <br>
             <%  }}else{

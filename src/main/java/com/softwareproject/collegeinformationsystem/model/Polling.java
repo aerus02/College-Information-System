@@ -174,8 +174,15 @@ public class Polling {
         return "Polling{" + "heading=" + heading + ", description=" + description + ", option1=" + option1 + ", option2=" + option2 + ", option3=" + option3 + ", option4=" + option4 + ", count1=" + count1 + ", count2=" + count2 + ", count3=" + count3 + ", count4=" + count4 + ", dateCreated=" + dateCreated + ", dateExpired=" + dateExpired + ", courseID=" + courseID + '}';
     }
     
+    public String dataToDescription(){
+        String str = "Results : \n"+this.option1+" : "+this.count1+"\n"+this.option2 +" : "+this.count2+"\n"+this.option3+" : "+this.count3+"\n"+this.option4+" : "+this.count4+"\n";
+        return str;
+    }
     
-    
+    public String dataToMiniDescription(){
+        String str = "Polling Description - "+this.description;
+        return str;
+    }
     
     
 }

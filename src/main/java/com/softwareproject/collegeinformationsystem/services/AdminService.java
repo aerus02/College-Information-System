@@ -27,9 +27,8 @@ public class AdminService {
     }
     
     public boolean ExistByUserIDService(int userID){
-        System.out.println("Exist....in admin called,before its interface"+userID+adminRepository);
+        System.out.println("Exist....in admin called,before its interface");
          List<Admin> list = adminRepository.findByUserID(userID);
-         System.out.println("Exist....in admin called,after its interface"+list);
          if(list == null) return false;
          if(list.isEmpty()) return false;
          return true;

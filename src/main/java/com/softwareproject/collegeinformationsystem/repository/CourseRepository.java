@@ -17,6 +17,6 @@ import java.util.List;
 public interface CourseRepository extends CrudRepository<Course,Integer> {
     
     List<Course>findByFacultyID(int facultyID);
-   
     
+   
 }

@@ -39,7 +39,19 @@
                 <tr> <%= t.getOption2()%> </tr>
                 <tr> <%= t.getOption3()%> </tr>
                 <tr> <%= t.getOption4()%> </tr>
+                <form action="/polling-participate" method="POST" >
+                <label><%= t.getOption1()%></label><br>
+                <input type="radio" name="option" value="1"><br>
+                <label><%= t.getOption2()%></label><br>
+                <input type="radio" name="option" value="2"><br>
+                <label><%= t.getOption3()%></label><br>
+                <input type="radio" name="option" value="3"><br>
+                <label><%= t.getOption4()%></label><br>
+                <input type="radio" name="option" value="4"><br>
+                <button onclick="alert('Details Submitted')">Send poll option </button>
+                </form>
                 <tr>Date Created : <%= t.getDateCreated()%></tr>
+                        
            </table>
              <br>
             <%  }}else{

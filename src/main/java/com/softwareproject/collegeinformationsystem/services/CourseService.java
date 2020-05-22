@@ -77,6 +77,14 @@ public class CourseService {
         return courseIDs;
     }
     
-    
+    public Course FindByCollegeIDService(String collegeID){
+       List<Course>courses = FindAllService();
+       int i;
+       for( i = 0; i < courses.size(); ++i){
+           if(courses.get(i).getCollegeID().equals(collegeID)) break;
+       }
+       if( i < courses.size())return courses.get(i);
+       else return null;
+    }
     
 }

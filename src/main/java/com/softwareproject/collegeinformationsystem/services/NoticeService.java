@@ -61,13 +61,16 @@ public class NoticeService {
         return noticesList;
     }
     
-    public void DeleteByIDService(int noticeID){
-        noticeRepository.deleteById(noticeID);
-    }
-         
     public boolean ExistByIDService(int noticeID){
         return noticeRepository.existsById(noticeID);
     }
+    
+    public void DeleteByIDService(int noticeID){
+        if(ExistByIDService(noticeID))
+        noticeRepository.deleteById(noticeID);
+    }
+         
+    
     
     public long FindCountService(){
         return noticeRepository.count();
