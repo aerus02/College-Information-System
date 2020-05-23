@@ -1,0 +1,157 @@
+*{
+    background-color: #87ff87;
+    font-family:sans-serif;
+    font-style: oblique;
+    margin : 0;
+    padding : 0;
+    border :0;
+}
+
+.top1{
+    background-color: #ff4d4d;
+    color: white;
+    padding : 18px 0px;
+    padding-left: 10px;
+    font-size:24px;
+}
+
+.top2{
+    background-color:black;
+}
+
+.top2 ul{
+    list-style: none;
+    padding:10px 0px;
+    background-color:black;
+}
+
+.top2 li{
+    display:inline;
+    background-color:black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top2 a{
+    color : #fff;
+    text-decoration: none;
+    font-size : 18px;
+    padding:0px 15px;
+    background-color:transparent !important;
+}
+
+.top2 a:hover{
+    color: orange;
+}
+
+
+.middle{
+ margin:auto;
+}
+
+.bottom{
+    text-align : left;
+    background-color: black;
+    color : white;
+    font-size: 14px;
+    padding : 5px 10px;
+}
+
+.tab{                    
+    width : 70%;
+    margin:auto;
+    padding : 10px 10px;
+    background-color: #ffdf80;
+
+    font-size: 20px;
+
+}
+.tab,th,td{
+border: 1px solid black;
+border-collapse: collapse;
+background-color: #ffdf80;
+padding : 5px 5px;
+}
+
+th{
+    text-align:center;
+}
+
+td{
+    text-align : left;
+}
+.index{
+column-width: 10%;
+}
+.table-cells1{
+column-width: 25%;
+}
+.table-cells2{
+column-width: 20%;
+}
+.table-cells3{
+column-width: 15%;
+}
+
+.title{
+text-align: center;
+padding : 5px 0px;
+font-size: 23px;
+
+}
+.btn{
+border: none;
+background-color: #ffdf80;
+font-size: 20px;
+cursor: pointer;
+}
+.btn:hover{
+color : orange;
+}
+
+form{
+background-color: #ffdf80;
+}
+
+.nildata{
+    text-align : center;
+    color : black;
+    font-size: 20px;
+    padding : 10px 10px;
+}
+
+.time-table{                    
+    width : 100%;
+    margin:auto;
+    padding : 10px 10px;
+    background-color: #ffdf80;
+
+    font-size: 20px;
+
+}
+.time-table,.time-table th,.time-table td{
+border: 1px solid black;
+border-collapse: collapse;
+background-color: #ffdf80;
+padding : 5px 5px;
+}
+
+.tt-elems,.othLi-1,.othLi-2{
+   background-color: #ffdf80; 
+   padding : 5px 5px;
+}
+
+.othLi-index{
+    column-width: 10%;
+}
+
+.othLi-a{
+    color :black;
+    text-decoration: none;
+    font-size : 20px;
+    background-color:transparent !important;
+}
+
+.othLi-a:hover{
+    color: orange;
+}

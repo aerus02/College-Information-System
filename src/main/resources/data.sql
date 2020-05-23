@@ -11,10 +11,10 @@ insert into users(userID,username,password) values(9,'helopa','mashit');
 
 insert into admins(adminID,userID) values(1,1);
 
-insert into students(studentID,userID,collegeID,YEAR_OF_ENROLLMENT) values(1,2,'18cs10298',1092);
-insert into students(studentID,userID,collegeID,YEAR_OF_ENROLLMENT) values(2,3,'18me10204',2019);
-insert into students(studentID,userID,collegeID,YEAR_OF_ENROLLMENT) values(3,4,'19im30298',2008);
-insert into students(studentID,userID,collegeID,YEAR_OF_ENROLLMENT) values(4,5,'16ec10265',2018);
+insert into students(studentID,studentname,userID,collegeID,YEAR_OF_ENROLLMENT) values(1,'stu1',2,'18cs10298',1092);
+insert into students(studentID,studentname,userID,collegeID,YEAR_OF_ENROLLMENT) values(2,'stu2',3,'18me10204',2019);
+insert into students(studentID,studentname,userID,collegeID,YEAR_OF_ENROLLMENT) values(3,'stu3',4,'19im30298',2008);
+insert into students(studentID,studentname,userID,collegeID,YEAR_OF_ENROLLMENT) values(4,'stu4',5,'16ec10265',2018);
 
 
 insert into faculties(facultyID,userID,collegeID) values(1,6,'cs102');

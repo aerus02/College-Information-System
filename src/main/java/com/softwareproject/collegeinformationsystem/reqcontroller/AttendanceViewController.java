@@ -22,6 +22,7 @@ import com.softwareproject.collegeinformationsystem.services.StudentService;
 import com.softwareproject.collegeinformationsystem.services.TimeTableService;
 import com.softwareproject.collegeinformationsystem.services.UserService;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +32,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.Date;
 
 /**
  *
@@ -138,8 +140,18 @@ public class AttendanceViewController {
                 coursesList = courseService.FindByCourseIDListService(courseIDs);
            }
            else coursesList = null;
-           
+//           long d = System.currentTimeMillis();
+//           Date date = new Date(d);
+            
+
+            Date date= new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int month = cal.get(Calendar.MONTH);
+
            mv = new ModelAndView("attendanceviewpagestudent");
+           if(month <= 5) mv.addObject("month",1);
+           else mv.addObject("month",2);
            mv.addObject("attendance",attendance);//has courseid as 4th one ,0-3 as attendances
            mv.addObject("coursesList",coursesList);
            return mv;                

@@ -1,7 +1,5 @@
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,71 +8,131 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>CIS-Home</title>
+            <style>
+                *{
+                        background-color: #87ff87;
+                        font-family:sans-serif;
+                        font-style: oblique;
+                        margin : 0;
+                        padding : 0;
+                        border :0;
+                }
+
+                .top1{
+                        background-color: #ff4d4d;
+                        color: white;
+                        padding : 18px 0px;
+                        padding-left: 10px;
+                        font-size:24px;
+                }
+
+                .top2{
+                        background-color:black;
+                }
+
+                .top2 ul{
+                        list-style: none;
+                        padding:10px 0px;
+                        background-color:black;
+                }
+
+                .top2 li{
+                        display:inline;
+                        background-color:black;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                }
+
+                .top2 a{
+                        color : #fff;
+                        text-decoration: none;
+                        font-size : 18px;
+                        padding:0px 15px;
+                        background-color:transparent !important;
+                }
+
+                .top2 a:hover{
+                        color: orange;
+                }
+
+
+                .middle{
+                        height:670px;
+                }
+
+                .items{
+                        font-size: 20px;
+                        padding-top :10px ;
+                        padding-bottom: 10px;
+                        margin:auto;
+                        text-align: center;
+                }
+
+                .blocks a:hover{
+                        color : red;
+                }
+
+                .blocks{
+                        width:80%;
+                        background-color: #ffdf80;
+                        margin : auto;
+                        padding-top: 10px;
+                        padding-bottom :10px;
+                        border: 3px solid blue;
+                }
+
+                .middle a{
+                        color : black;
+                        text-decoration: none;
+                    background-color:transparent !important;
+                }
+
+                .bottom{
+                       text-align : left;
+                        background-color: black;
+                        color : white;
+                        font-size: 14px;
+                        padding : 5px 10px;
+                }
+                
+            </style>
         </head>
         <body>
-           
-             <!--response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");-->
-           
             
-            <h1>This is the Home Page - student</h1>
-            <div>UserName :   ${username} </div>
-            <div>Welcome,You are logged in as ${name}</div>
-            <form action="/logout">
-            <button>logout </button>
-            </form>
-            <form action="/change-password">
-            <button>change password </button>
-            </form>
+            <header class="top1">Welcome,You are logged in as ${name}</header>
+
+            <nav class="top2">
+            	<div id="nav-bar-div">
+            		<ul>
+            			<li><a href="/logout">Logout</a></li>
+            			<li><a href="/change-password">change password</a></li>
+            		</ul>
+            	</div>
+
+            </nav>
+            <div class="middle">
+
+            <div class="items" ><div class="blocks"><a href="/polling-view">Polling</a></div></div>
+        	
             
-            <div></div>  <!-- icon for menu bar  has Logout,change pass-->
+            <div class="items"><div class="blocks"><a href="/notices-view">Notices</a></div></div>
+        	
+            <div class="items"><div class="blocks"><a href="/profile">Profile</a></div></div>	
             
-            <form action="/polling-view">
-            <button>Polling </button>
-            </form>
-            <div ><a href="/polling-view">Polling</a></div>
-            <div>Polling</div>
-            
-             <form action="/notices-view">
-            <button>Notices</button>
-            </form>
-            <div>Notices</div>
-            <form action="/profile">
-            <button>Profile </button>
-            </form>
-            <div>Profile</div>	
-            
-            <form action="/attendance">
-            <button>Attendance</button>
-            </form>
-            <div>Attendance</div>
-            <form action="/courses-list">
-            <button>Courses List </button>
-            </form>
-            <div>Courseslist</div>
-            <form action="/faculties-list">
-            <button>Faculty List</button>
-            </form>
-            <div>FacultyList</div>
+            <div class="items"><div class="blocks"><a href="/attendance">Attendance</div></div>
+            <div class="items"><div class="blocks"><a href="/courses-list">Courses List</a></div></div>
+            <div class="items"><div class="blocks"><a href="/faculties-list">Faculty List</a></div></div>
             
            
-            <br>
-            <div>Messaging</div>
-            <br>
+            <div class="items"><div class="blocks"><a href="/#">Messaging</a></div></div>
             
+            <div class="items"><div class="blocks"><a href="/timetable">TimeTable</a></div></div>
+
+            <div class="items"><div class="blocks"><a href="/otherlinks">Other Links</a></div></div>
             
-            <form action="/timetable">
-            <button>Timetable </button>
-            </form>
-            <div>TimeTable</div>
-<!--            <form action="/others-profile">
-            <button>Others Profile </button>
-            </form>
-            <div>Others Profile</div>-->
-            <form action="/otherlinks">
-            <button>other-links</button>
-            </form>
+       		</div>
+            <footer class="bottom">college information system</footer>	
             
-            <div>OtherLinks</div>
             
         </body>
     </html>

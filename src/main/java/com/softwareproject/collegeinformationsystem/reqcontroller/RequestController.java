@@ -160,7 +160,10 @@ public class RequestController {
                     listUser = list.get(i);
                     if(listUser.getPassword().equals(user.getPassword())){//1-admin,2-faculty,3-stu
                         user = listUser;
-                        if(adminService.ExistByUserIDService(listUser.getUserID()))  j = 1;                          
+                        if(adminService.ExistByUserIDService(listUser.getUserID())){
+                            j = 1;
+                            session.setAttribute("name","Admin");
+                        }                          
                         else if(facultyService.ExistByUserIDService(listUser.getUserID())){
                             j = 2;
                             Faculty faculty = facultyService.FindByUserIDService(user.getUserID());
@@ -469,7 +472,7 @@ public class RequestController {
             Student student = studentService.FindByUserIDService(user.getUserID());
             List<Integer> courseIDs = attendanceService.FindCourseIDsByStudentIDService(student.getStudentID());
             ArrayList<ArrayList<Integer>> timeTable = timeTableService.FindTimeTableByCourseIDsService(courseIDs);
-            mv = new ModelAndView("timetablepagestudent");
+            mv = new ModelAndView("timetablepagefaculty");
             List<Course>courses = courseService.FindByCourseIDListService(courseIDs);
             mv.addObject("courses",courses);
             mv.addObject("timeTable",timeTable);

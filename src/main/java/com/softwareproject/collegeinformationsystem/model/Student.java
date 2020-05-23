@@ -22,7 +22,7 @@ public class Student{
     private int studentID;//id from db
     private int userID;//linked userid
     private String collegeID; //like 18cs10028
-    private String name;
+    private String studentname;
     private Date dob;   //processing from user...
     private String mailID;
     private String phoneNumber;
@@ -35,11 +35,11 @@ public class Student{
 
     @Override
     public String toString() {
-        return "Student{" + "name=" + name + ", dob=" + dob + ", mailID=" + mailID + ", phoneNumber=" + phoneNumber  + ", gender=" + gender + ", department=" + department + ", yearOfEnrollment=" + yearOfEnrollment + ", studentID=" + studentID + ", collegeID=" + collegeID + ", enrolledCourse=" + enrolledCourse + '}';
+        return "Student{" + "name=" + studentname + ", dob=" + dob + ", mailID=" + mailID + ", phoneNumber=" + phoneNumber  + ", gender=" + gender + ", department=" + department + ", yearOfEnrollment=" + yearOfEnrollment + ", studentID=" + studentID + ", collegeID=" + collegeID + ", enrolledCourse=" + enrolledCourse + '}';
     }
 
     public Student(String name, Date dob, String mailID, String phoneNumber, String gender, String department, int yearOfEnrollment, String collegeID, String enrolledCourse) {
-        this.name = name;
+        this.studentname = name;
         this.dob = dob;
         this.mailID = mailID;
         this.phoneNumber = phoneNumber;
@@ -52,7 +52,7 @@ public class Student{
     }
     
     public Student(){
-        this.name = null;
+        this.studentname = null;
         this.dob = null;
         this.mailID = null;
         this.phoneNumber = null;
@@ -73,11 +73,11 @@ public class Student{
     }
     
     public String getName() {
-        return name;
+        return studentname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.studentname = name;
     }
 
     public Date getDob() {
