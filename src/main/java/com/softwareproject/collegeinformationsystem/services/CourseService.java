@@ -87,4 +87,24 @@ public class CourseService {
        else return null;
     }
     
+    public boolean ExistByIDService(int courseID){
+        return courseRepository.existsById(courseID);
+    }
+    
+    public long FindCountService(){
+        return courseRepository.count();
+    }
+    
+    public void SaveEntityService(Course course){
+        long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        course.setCourseID(i);
+        courseRepository.save(course);
+
+    }
 }

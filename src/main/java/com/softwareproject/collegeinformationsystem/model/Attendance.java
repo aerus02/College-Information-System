@@ -21,12 +21,17 @@ public class Attendance {
     private int attendanceID;
     @Column(columnDefinition = "integer default 0")
     private int studentID;
+    @Column(columnDefinition = "integer default 0")
     private int courseID;
+    @Column(columnDefinition = "integer default 0")
     private int value1;
+    @Column(columnDefinition = "integer default 0")
     private int value2;
+    @Column(columnDefinition = "integer default 0")
     private int value3;
+    @Column(columnDefinition = "integer default 0")
     private int value4;
-    private int grade;
+//    private int grade;
 
     public int getAttendanceID() {
         return attendanceID;
@@ -84,13 +89,13 @@ public class Attendance {
         this.value4 = value4;
     }
 
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
+//    public int getGrade() {
+//        return grade;
+//    }
+//
+//    public void setGrade(int grade) {
+//        this.grade = grade;
+//    }
 
     public Attendance() {
         this.courseID = 0;
@@ -99,7 +104,7 @@ public class Attendance {
         this.value2 = 0;
         this.value3 = 0;
         this.value4 = 0;
-        this.grade = 0;
+     //   this.grade = 0;
     }
 
     @Override

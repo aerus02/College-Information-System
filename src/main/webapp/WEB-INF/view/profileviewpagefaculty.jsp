@@ -10,15 +10,26 @@
 
     <html>
         <head>
+            <link href="css/studentprofileviewstyle.css" type="text/css" rel="stylesheet"><link/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>CIS-Profile</title>
         </head>
         <body>
-            <h1>This is profile view faculty page</h1>
-            
+            <header class="top1">Welcome,You are logged in as ${name}</header>
 
-                ${faculty}
-                
+            <nav class="top2">
+            	<div id="nav-bar-div">
+            		<ul>
+            			<li><a href="/logout">Logout</a></li>
+            			<li><a href="/change-password">Change Password</a></li>
+                                <li><a href="/home">Home</a></li>
+                        </ul>
+            	</div>
+
+            </nav>
+            <div class="middle">
+                <div style="height:50px;"></div>
+                <div class="title">Profile</div>  
                 <% 
                 
                 Faculty f = (Faculty)request.getAttribute("faculty");
@@ -26,42 +37,38 @@
             <%
             if(f != null){
             %>
-            <table>
+            <table class="tab">
             <tr>
-                <td>Name </td> 
+                <th>Name </th> 
                 <td> <%= f.getName()%> </td>
             </tr>
             <tr>
-                <td> CollegeID </td>
+                <th> Faculty ID </th>
                 <td> <%= f.getCollegeID()%> </td>
             </tr>
             <tr>
-                <td> Date of Birth </td>
+                <th> Date of Birth </th>
                 <td> <%= f.getDob()%> </td>
             </tr>
             <tr>
-                <td>Gender</td>
+                <th>Gender</th>
                 <td> <%= f.getGender()%> </td>
             </tr>
             <tr>
-                <td> Department</td>
+                <th> Department</th>
                 <td> <%= f.getDepartment()%> </td>
             </tr>
             <tr>
-                <td> Phone Number </td>
+                <th> Phone Number </th>
                 <td> <%= f.getPhoneNumber()%> </td>
             </tr>
             <tr>
-                <td> Email ID</td>
+                <th> Email ID</th>
                 <td> <%= f.getMailID()%> </td>
             </tr>
             <tr>
-                <td> Date of Joining</td>
+                <th> Date of Joining</th>
                 <td> <%= f.getDoj()%> </td>
-            </tr>
-            <tr>
-                <td> Date of Leaving</td>
-                <td> <%= f.getDol()%> </td>
             </tr>
              
             </table>
@@ -69,12 +76,14 @@
                 }
             else{
             %>
-            <h3>No Profile to Display</h3>
+            <h3 class="nildata">No Profile data to Display</h3>
             <%
                 }
             %>
+             </div>
+            <div style="height:50px;"></div>
+            <footer class="bottom">college information system</footer>	
             
-        </body>
 
         </body>
     </html>

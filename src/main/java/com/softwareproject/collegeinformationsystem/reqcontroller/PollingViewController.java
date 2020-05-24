@@ -13,6 +13,7 @@ import com.softwareproject.collegeinformationsystem.repository.AttendanceReposit
 import com.softwareproject.collegeinformationsystem.repository.CourseRepository;
 import com.softwareproject.collegeinformationsystem.repository.FacultyRepository;
 import com.softwareproject.collegeinformationsystem.repository.NoticeRepository;
+import com.softwareproject.collegeinformationsystem.repository.PollCountRepository;
 import com.softwareproject.collegeinformationsystem.repository.PollingRepository;
 import com.softwareproject.collegeinformationsystem.repository.StudentRepository;
 import com.softwareproject.collegeinformationsystem.repository.UserRepository;
@@ -20,10 +21,12 @@ import com.softwareproject.collegeinformationsystem.services.AttendanceService;
 import com.softwareproject.collegeinformationsystem.services.CourseService;
 import com.softwareproject.collegeinformationsystem.services.FacultyService;
 import com.softwareproject.collegeinformationsystem.services.NoticeService;
+import com.softwareproject.collegeinformationsystem.services.PollCountService;
 import com.softwareproject.collegeinformationsystem.services.PollingService;
 import com.softwareproject.collegeinformationsystem.services.StudentService;
 import com.softwareproject.collegeinformationsystem.services.UserService;
 import java.util.List;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -58,6 +61,8 @@ public class PollingViewController {
     @Autowired
     PollingRepository pollingRepository;
     
+    @Autowired
+    PollCountRepository pollCountRepository;
     
     
     public boolean checkLogin(HttpServletRequest req){
@@ -101,6 +106,7 @@ public class PollingViewController {
         CourseService courseService = new CourseService(courseRepository);
         FacultyService facultyService = new FacultyService(facultyRepository);
         PollingService pollingService = new PollingService(pollingRepository);
+        PollCountService pollCountService = new PollCountService(pollCountRepository);
         System.out.println("PollingViewFunction ,before logic begins");
         User user = userService.FindByUsernameService(username);
         ModelAndView mv;
@@ -115,19 +121,26 @@ public class PollingViewController {
             return mv;
         
         }
-        else if(userType == 2){
+        else if(userType == 2){//Let view stats
             Faculty faculty = facultyService.FindByUserIDService(user.getUserID());
             List<Integer>courseIDs = courseService.FindCourseIDsByFacultyIDService(faculty.getFacultyID());
             polls = pollingService. FindPollingsByCourseIDsService(courseIDs);
+            List<Integer>pollListIDs = new ArrayList<>();
+            for(int i =0;i < polls.size(); i+=1) pollListIDs.add(i,polls.get(i).getPollID());
+            List<List<Integer> >pollListCounts = pollCountService.FindCountsByPollListService(pollListIDs);
+            
             mv = new ModelAndView("pollingviewpagefaculty");
+            mv.addObject("pollListCounts",pollListCounts);
             mv.addObject("polls",polls);
             return mv;
             
         }
         else{
             Student student = studentService.FindByUserIDService(user.getUserID());
-            List<Integer>courseIDs = attendanceService.FindCourseIDsByStudentIDService(student.getStudentID());
-            polls = pollingService.FindPollingsByCourseIDsService(courseIDs);
+//            List<Integer>courseIDs = attendanceService.FindCourseIDsByStudentIDService(student.getStudentID());
+//            polls = pollingService.FindPollingsByCourseIDsService(courseIDs);
+            List<Integer>pollIDs = pollCountService.FindPollIDListByStudentIDService(student.getStudentID());
+            polls = pollingService.FindByIDsListService(pollIDs);
             mv = new ModelAndView("pollingviewpagestudent");
             mv.addObject("polls",polls);
             return mv;

@@ -1,0 +1,124 @@
+
+*{
+    background-color: #87ff87;
+    font-family:sans-serif;
+    font-style: oblique;
+    margin : 0;
+    padding : 0;
+    border :0;
+}
+
+.top1{
+    background-color: #ff4d4d;
+    color: white;
+    padding : 18px 0px;
+    padding-left: 10px;
+    font-size:24px;
+}
+
+.top2{
+    background-color:black;
+}
+
+.top2 ul{
+    list-style: none;
+    padding:10px 0px;
+    background-color:black;
+}
+
+.top2 li{
+    display:inline;
+    background-color:black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top2 a{
+    color : #fff;
+    text-decoration: none;
+    font-size : 18px;
+    padding:0px 15px;
+    background-color:transparent !important;
+}
+
+.top2 a:hover{
+    color: orange;
+}
+
+
+.middle{
+ margin:auto;
+}
+
+.bottom{
+    text-align : left;
+    background-color: black;
+    color : white;
+    font-size: 14px;
+    padding : 5px 10px;
+}
+
+.tab{                    
+    width : 70%;
+    margin:auto;
+    padding : 10px 10px;
+    background-color: #ffdf80;
+
+    font-size: 20px;
+
+}
+.tab,.tab th,.tab td{
+border: 1px solid black;
+border-collapse: collapse;
+background-color: #ffdf80;
+padding : 5px 5px;
+}
+
+th{
+    text-align:center;
+}
+
+td{
+    text-align :center;
+}
+
+.title,.coupro-title{
+text-align: center;
+padding : 5px 0px;
+font-size: 23px;
+
+}
+
+.nildata{
+    text-align : center;
+    color : black;
+    font-size: 20px;
+    padding : 10px 10px;
+}
+
+.coupro-li{
+    list-style: none;
+    padding:5px 0px;
+    font-size: 20px;
+}
+
+.notices-tab{
+    width : 70%;
+    margin:auto;
+    padding : 10px 10px;
+    background-color: #b3b3ff;
+
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.notices-tab,.notices-tab th,.notices-tab td{
+border: 1px solid black;
+border-collapse: collapse;
+background-color: #b3b3ff;
+padding : 5px 5px;
+}
+
+.notices-mini{
+    
+}

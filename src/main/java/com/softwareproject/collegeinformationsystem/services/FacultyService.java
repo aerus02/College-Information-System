@@ -72,4 +72,25 @@ public class FacultyService {
         if(facultiesList == null || facultiesList.isEmpty()) return null;
         return facultiesList.get(0);
     }
+    
+    public boolean ExistByIDService(int facultyID){
+        return facultyRepository.existsById(facultyID);
+    }
+    
+    public long FindCountService(){
+        return facultyRepository.count();
+    }
+    
+    public int SaveEntityService(Faculty faculty ){
+        long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        faculty.setFacultyID(i);
+        facultyRepository.save(faculty);
+        return i;
+    }
 }

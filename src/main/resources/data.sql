@@ -33,10 +33,10 @@ insert into courses(courseID,COURSENAME,facultyID,collegeID) values(1,'DataStruc
 insert into courses(courseID,COURSENAME,facultyID,collegeID) values(2,'Sciences',3,'py1003');
 
 
-insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4,grade) values(1,2,1,1,3,2,1,9);
-insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4,grade) values(1,1,2,2,2,2,2,4);
-insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4,grade) values(4,1,3,2,3,5,4,7);
-insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4,grade) values(2,2,4,5,4,3,24,7);
+insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4) values(1,2,1,1,3,2,1);
+insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4) values(1,1,2,2,2,2,2);
+insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4) values(4,1,3,2,3,5,4);
+insert into attendances(studentID,courseID,attendanceID,value1,value2,value3,value4) values(2,2,4,5,4,3,24);
 
 
 insert into timetables(TIMETABLEID,courseID,timings1,timings2,timings3,timings4) values(1,4,1,2,3,4);

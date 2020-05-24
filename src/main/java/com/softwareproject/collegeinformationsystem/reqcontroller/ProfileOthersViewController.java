@@ -119,7 +119,7 @@ public class ProfileOthersViewController {
                 }
             }
             if((int)session.getAttribute("userType") == 1){
-            mv = new ModelAndView("profilefacultyviewpageadmin");
+            mv = new ModelAndView("profileviewpagefaculty");
             }
             else{
             mv = new ModelAndView("profilefacultyviewpagestudent");
@@ -139,10 +139,11 @@ public class ProfileOthersViewController {
                 }
             }
             if((int)session.getAttribute("userType") == 1){
-                mv = new ModelAndView("profilestudentviewpagedamin");
+                mv = new ModelAndView("profileviewpagestudent");
             }
             else{
-                mv = new ModelAndView("profilestudentviewpagefaculty");
+//                mv = new ModelAndView("profilestudentviewpagefaculty");
+                mv = new ModelAndView("profileviewpagestudent");
             }
             mv.addObject(student);
             return mv;

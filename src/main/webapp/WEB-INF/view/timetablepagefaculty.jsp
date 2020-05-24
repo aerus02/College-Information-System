@@ -11,6 +11,7 @@
 
     <html>
         <head>
+            
             <link href="css/homepagestyle.css" type="text/css" rel="stylesheet"><link/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>CIS-TimeTable</title>
@@ -92,7 +93,7 @@
                         <%=courses.get(timeTable.get(i).get(j)).getCourseName() %>
                         
                     </p>
-                <!--<p class="tt-elems">venue</p></td>-->
+                <!--<p class="tt-elems"><%=courses.get(timeTable.get(i).get(j)).get %></p></td>-->
                 <%}
                 %>
                 

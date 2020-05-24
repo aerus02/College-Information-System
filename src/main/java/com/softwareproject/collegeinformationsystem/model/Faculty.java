@@ -28,7 +28,7 @@ public class Faculty {
     private String gender;
     private String department;
     private Date doj;//joining
-    private Date dol;//leaving
+//    private Date dol;//leaving
 
     public int getFacultyID() {
         return facultyID;
@@ -109,14 +109,14 @@ public class Faculty {
     public void setDoj(Date doj) {
         this.doj = doj;
     }
-
-    public Date getDol() {
-        return dol;
-    }
-
-    public void setDol(Date dol) {
-        this.dol = dol;
-    }
+//
+//    public Date getDol() {
+//        return dol;
+//    }
+//
+//    public void setDol(Date dol) {
+//        this.dol = dol;
+//    }
 
     public Faculty( String collegeID, String name, Date dob, String mailID, String phoneNumber, String gender, String department, Date doj, Date dol) {
         this.userID = 0;
@@ -128,7 +128,7 @@ public class Faculty {
         this.gender = gender;
         this.department = department;
         this.doj = doj;
-        this.dol = dol;
+//        this.dol = dol;
     }
     
     public Faculty() {
@@ -141,12 +141,12 @@ public class Faculty {
         this.gender = null;
         this.department = null;
         this.doj = null;
-        this.dol = null;
+//        this.dol = null;
     }
 
     @Override
     public String toString() {
-        return "Faculty{" + "collegeID=" + collegeID + ", name=" + name + ", dob=" + dob + ", mailID=" + mailID + ", phoneNumber=" + phoneNumber + ", gender=" + gender + ", department=" + department + ", doj=" + doj + ", dol=" + dol + '}';
+        return "Faculty{" + "collegeID=" + collegeID + ", name=" + name + ", dob=" + dob + ", mailID=" + mailID + ", phoneNumber=" + phoneNumber + ", gender=" + gender + ", department=" + department + ", doj=" + doj +  '}';
     }
     
     

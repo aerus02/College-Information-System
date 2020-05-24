@@ -23,19 +23,20 @@ public class Course {
     private String coursename;
     private String collegeID; //like CS10028
     private int facultyID;//dept also to be taken from facID
+    private String facultycollegeID;
     
-    @Column(columnDefinition = "integer default 0")
-    private int strength;
+//    @Column(columnDefinition = "integer default 0")
+//    private int strength;
     //private String coursesession;//grades to be taken from attendance table
-    private String roomnumber;
+//    private String roomnumber;
 
-    public String getRoomNumber() {
-        return roomnumber;
-    }
-
-    public void setRoomNumber(String roomnumber) {
-        this.roomnumber = roomnumber;
-    }
+//    public String getRoomNumber() {
+//        return roomnumber;
+//    }
+//
+//    public void setRoomNumber(String roomnumber) {
+//        this.roomnumber = roomnumber;
+//    }
     
 
     public int getCourseID() {
@@ -70,36 +71,43 @@ public class Course {
         this.facultyID = facultyID;
     }
 
-    public int getStrength() {
-        return strength;
+//    public int getStrength() {
+//        return strength;
+//    }
+//
+//    public void setStrength(int strength) {
+//        this.strength = strength;
+//    }
+
+    public String getFacultyCollegeID(){
+        return this.facultycollegeID;
     }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
+    
+    public void setFacultyCollegeID(String facultyCollegeID){
+        this.facultycollegeID = facultyCollegeID;
     }
-
-
+    
     public Course(String courseName, String collegeID) {
         this.coursename = courseName;
         this.courseID = 0;
         this.collegeID = collegeID;
-        this.strength = 0;
+        //this.strength = 0;
         this.facultyID = 0;
-        this.roomnumber = null;
+//        this.roomnumber = null;
     }
     //primary key to be set every instance
     public Course() {
         this.coursename = null;
         this.collegeID = null;
         this.courseID = 0;
-        this.strength = 0;
+//        this.strength = 0;
         this.facultyID = 0;
-        this.roomnumber = null;
+//        this.roomnumber = null;
     }
 
     @Override
     public String toString() {
-        return "Course{" + "courseName=" + coursename + ", collegeID=" + collegeID + ", strength=" + strength  + '}';
+        return "Course{" + "courseName=" + coursename + ", collegeID=" + collegeID +  '}';
     }
     
     

@@ -69,4 +69,36 @@ public class StudentService {
         return studentsList.get(0);
     }
     
+    public boolean ExistByIDService(int studentID){
+        return studentRepository.existsById(studentID);
+    }
+    
+    public long FindCountService(){
+        return studentRepository.count();
+    }
+    
+    public int SaveEntityService(Student student ){
+        long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        student.setStudentID(i);
+        studentRepository.save(student);
+        return i;
+    }
+    
+    public int FindNextService(){
+        long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        return i;
+    }
+    
 }

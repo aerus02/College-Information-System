@@ -37,4 +37,24 @@ public class OtherLinkService {
         return otherLinks;
     }
     
+    
+    public boolean ExistByIDService(int othID){
+        return otherLinkRepository.existsById(othID);
+    }
+    
+    public long FindCountService(){
+        return otherLinkRepository.count();
+    }
+    
+    public void SaveEntityService(OtherLink otherLink ){
+        long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        otherLink.setOtherLinkID(i);
+        otherLinkRepository.save(otherLink);
+    }
 }

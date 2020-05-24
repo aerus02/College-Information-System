@@ -9,6 +9,7 @@ import com.softwareproject.collegeinformationsystem.model.User;
 import com.softwareproject.collegeinformationsystem.model.Course;
 import com.softwareproject.collegeinformationsystem.model.Faculty;
 import com.softwareproject.collegeinformationsystem.model.Student;
+import com.softwareproject.collegeinformationsystem.model.Attendance;
 import com.softwareproject.collegeinformationsystem.repository.AttendanceRepository;
 import com.softwareproject.collegeinformationsystem.repository.CourseRepository;
 import com.softwareproject.collegeinformationsystem.repository.FacultyRepository;
@@ -113,19 +114,77 @@ public class AttendanceViewController {
 //                return new ModelAndView("homepagefaculty");
 //            }
 //        }
-        //convert string collegeid for course to courseid
         if(userType == 2){
-           // ArrayList<ArrayList<Integer>> attendance = attendanceService.FindFacultyAttendanceByCourseIDService(courseID);
-            mv = new ModelAndView("attendanceviewpagefaculty");
-            Faculty faculty = facultyService.FindByUserIDService(user.getUserID());
-            int facultyID = faculty.getFacultyID();
+            // ArrayList<ArrayList<Integer>> attendance = attendanceService.FindFacultyAttendanceByCourseIDService(courseID);
+            String courseIDString =req.getParameter("courseID");
             
-            System.out.println("In attendance controller fac");
-            List<Course> coursesList = courseService.FindByFacultyIDService(facultyID);
-            
-            mv.addObject("courLis",coursesList);
-            mv.addObject(coursesList);
-            return mv;//has studentid as 4th one ,0-3 as attendances
+            if(courseIDString == null){
+                mv = new ModelAndView("attendanceviewpagefaculty");
+                Faculty faculty = facultyService.FindByUserIDService(user.getUserID());
+                int facultyID = faculty.getFacultyID();
+
+                System.out.println("In attendance controller fac");
+                List<Course> coursesList = courseService.FindByFacultyIDService(facultyID);
+
+                mv.addObject("courLis",coursesList);
+                return mv;//has studentid as 4th one ,0-3 as attendances
+            }
+            else{
+                int courseID = Integer.parseInt(courseIDString);
+                String updateReq =req.getParameter("updateReq");
+                if(updateReq == null){
+                    mv = new ModelAndView("attendanceupdatepagefaculty");
+                    ArrayList<ArrayList<Integer>> attendance = attendanceService.FindFacultyAttendanceByCourseIDService(courseID);
+                    mv.addObject("attendance",attendance);
+                    ArrayList<Integer> stuIDList = new ArrayList<Integer> ();
+                    for(int i = 0; i < attendance.size();i+=1){
+                        stuIDList.add(i,attendance.get(i).get(4));
+                    }
+                    List<Student> students = studentService.FindByIDListService(stuIDList);
+                    mv.addObject("studentsList",students);
+                    mv.addObject("courseID",courseID);
+                    Date date= new Date();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    int month = cal.get(Calendar.MONTH);
+                    if(month <= 5) mv.addObject("month",1);
+                    else mv.addObject("month",2);
+                    return mv;
+                }
+                else{//should also send courseID
+                    int att1,att2,att3,att4;
+                    mv = new ModelAndView("attendanceupdatepagefaculty");
+                    mv.addObject("courseID",courseID);
+                    att1 = Integer.parseInt(req.getParameter("att1"));
+                    att2 = Integer.parseInt(req.getParameter("att2"));
+                    att3 = Integer.parseInt(req.getParameter("att3"));
+                    att4 = Integer.parseInt(req.getParameter("att4"));
+                    int StudentID = Integer.parseInt(req.getParameter("studentID"));
+                    Attendance attendanceTemp = new Attendance();
+                    attendanceTemp.setCourseID(courseID);
+                    attendanceTemp.setValue1(att1);           
+                    attendanceTemp.setValue2(att2);
+                    attendanceTemp.setValue3(att3); 
+                    attendanceTemp.setValue4(att4);
+                    attendanceTemp.setStudentID(StudentID);
+                    attendanceService.UpdateEntityService(attendanceTemp);
+                    ArrayList<ArrayList<Integer>> attendance = attendanceService.FindFacultyAttendanceByCourseIDService(courseID);
+                    mv.addObject("attendance",attendance);
+                    ArrayList<Integer> stuIDList = new ArrayList<Integer> ();
+                    for(int i = 0; i < attendance.size();i+=1){
+                        stuIDList.add(i,attendance.get(i).get(4));
+                    }
+                    List<Student> students = studentService.FindByIDListService(stuIDList);
+                    mv.addObject("studentsList",students);
+                    Date date= new Date();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    int month = cal.get(Calendar.MONTH);
+                    if(month <= 5) mv.addObject("month",1);
+                    else mv.addObject("month",2);
+                    return mv;
+                }
+            }
         }
         else if(userType == 3){
            Student student = studentService.FindByUserIDService(user.getUserID());

@@ -88,4 +88,12 @@ public class PollingService {
     public Polling FindByIDService(int pollID){
         return pollingRepository.findById(pollID).orElse(null);
     }
+    
+    public List<Polling> FindByIDsListService(List<Integer>pollIDs){
+        List<Polling> pollingsList= new ArrayList<>();
+        for(int i = 0; i < pollIDs.size(); i +=1){
+            pollingsList.add(i,FindByIDService(pollIDs.get(i)));
+        }
+        return pollingsList;
+    }
 }

@@ -56,20 +56,20 @@ public class TimeTableService {
             temporaryTable =   FindByCourseIDService(courseIDs.get(i));
             if(temporaryTable == null) continue;
             j = temporaryTable.getTimings1();
-            if(j != -1){
-                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
+            if(j != -1){//arr - check again arr[(j-1)/5][j%9],from 1 to 45
+                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
             j = temporaryTable.getTimings2();
             if(j != -1){
-                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
+                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
              j = temporaryTable.getTimings3();
             if(j != -1){
-                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
+                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
              j = temporaryTable.getTimings4();
             if(j != -1){
-                arr[(j-1)/5][j%9] = i;//temporaryTable.getCourseID();
+                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
         }
         ArrayList<ArrayList<Integer>> timeTableList = new ArrayList<>();
@@ -79,13 +79,34 @@ public class TimeTableService {
             timeTableList.add(i,temp);
             temp = new ArrayList<>();
             
-        }
+        }        
         
-        
-        return timeTableList;
-        
+        return timeTableList;       
     }
     
+    public void DeleteByIDService(int timeTableID){
+        timeTableRepository.deleteById(timeTableID);
+    }
+    
+     public boolean ExistByIDService(int timeTableID){
+        return timeTableRepository.existsById(timeTableID);
+    }
+    
+    public long FindCountService(){
+        return timeTableRepository.count();
+    }
+    
+    public void SaveEntityService(TimeTable timeTable){
+        long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        timeTable.setTimetableID(i);
+        timeTableRepository.save(timeTable);
+    }
     
     
 }

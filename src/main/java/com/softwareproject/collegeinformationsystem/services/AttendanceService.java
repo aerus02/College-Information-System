@@ -102,4 +102,49 @@ public class AttendanceService {
         return listAttendance;
     }
     
+    public int FindIDByCourseIDAndStudentIDService(Attendance attendance){
+        List<Attendance> attendanceList = attendanceRepository.findByCourseID(attendance.getCourseID());
+        int i;
+        for(i = 0; i < attendanceList.size(); i+=1){
+           if(attendanceList.get(i).getStudentID() == attendance.getStudentID())  break;
+        }
+        if(i < attendanceList.size()) return attendanceList.get(i).getAttendanceID();
+        else return 0;
+    }
+    
+    public void DeleteEntityService(int attendanceID){
+        attendanceRepository.deleteById(attendanceID);
+    }
+    
+    public void SaveEntityService(Attendance attendance){
+        attendanceRepository.save(attendance);
+    }
+    
+    public void UpdateEntityService(Attendance attendance){
+        int attendanceID = FindIDByCourseIDAndStudentIDService(attendance);
+        if(attendanceID == 0) return;
+        attendance.setAttendanceID(attendanceID);
+        DeleteEntityService(attendanceID);
+        SaveEntityService(attendance);
+    }
+    
+    public boolean ExistByIDService(int attendanceID){
+        return attendanceRepository.existsById(attendanceID);
+    }
+    
+    public long FindCountService(){
+        return attendanceRepository.count();
+    }
+    
+    public void SaveEntityWithoutIDService(Attendance attendance){
+         long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        attendance.setAttendanceID(i);
+        attendanceRepository.save(attendance);
+    }
 }

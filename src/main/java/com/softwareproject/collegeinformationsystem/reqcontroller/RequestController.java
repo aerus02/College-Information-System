@@ -306,7 +306,7 @@ public class RequestController {
         boolean check = checkLogin(req);
         if(!check){
             try{
-                res.sendRedirect("login");
+                res.sendRedirect("/login");
             }
             catch(Exception e){
                 System.out.println(e +" -error");

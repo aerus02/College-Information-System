@@ -59,7 +59,7 @@
                 <td class="table-cells1"> <%= c.getCourseName()%></td>
                 <td class="table-cells2"> <%= c.getCollegeID()%> </td>
                 <td class="table-cells3">
-                    <form action="/attendance-update" method="POST">
+                    <form action="/attendance" method="POST">
                         <input type="hidden" name="courseID" value=<%=c.getCourseID()%> />
                         <button class="btn">View Attendance </button>
                     </form>

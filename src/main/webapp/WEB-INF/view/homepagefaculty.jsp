@@ -128,7 +128,7 @@
             
            
             <div class="items"><div class="blocks"><a href="/#">Messaging</a></div></div>
-            <div class="items"><div class="blocks"><a href="/others-profile">Others Profile</a></div></div>
+            <!--<div class="items"><div class="blocks"><a href="/others-profile">Others Profile</a></div></div>-->
             
             <div class="items"><div class="blocks"><a href="/timetable">TimeTable</a></div></div>
 

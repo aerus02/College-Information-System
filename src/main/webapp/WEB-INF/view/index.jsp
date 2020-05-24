@@ -134,7 +134,7 @@ body {
                 <input type="text" name="username" placeholder="username"/>
                 <input type="password" name="password" placeholder="password"/>
                 <button>login</button>
-                <p class="message">Don't have an account? <a href="/register">Create account</a></p>
+                <p class="message">Don't have an account? <a href="/register?pageType=0&dataType=0">Create account</a></p>
               </form>
             </div>
         </div>

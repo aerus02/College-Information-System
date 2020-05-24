@@ -80,11 +80,12 @@ public class CourseProfileController {
         FacultyService facultyService = new FacultyService(facultyRepository);
         Course course = courseService.FindByCourseIDService(courseID);
         ModelAndView mv = new ModelAndView("courseprofileviewpage");
-        mv.addObject(course);
+        mv.addObject("course",course);
         Faculty faculty = facultyService.FindByIDService(course.getFacultyID());
-        mv.addObject("facultyName",faculty.getName());
+//      mv.addObject("facultyName",faculty.getName());
+        mv.addObject("faculty",faculty);
         TimeTable timeTable = timeTableService.FindByCourseIDService(courseID);
-        mv.addObject(timeTable);
+        mv.addObject("timeTable",timeTable);
         return mv;
     }
 }

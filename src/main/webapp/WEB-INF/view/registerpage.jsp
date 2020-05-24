@@ -1,35 +1,54 @@
-<%-- 
-    Document   : registerpage.jsp
-    Created on : 28-Apr-2020, 8:36:52 AM
-    Author     : aerus02
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%--<%@taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
-<%@taglib prefix="h" uri="http://java.sun.com/jsf/html"%>--%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
-<%--<f:view>--%>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>Register</title>
+            <title>CIS-Registration</title>
+            <style>
+                *{
+                    background-color: #87ff87;
+                    font-family:sans-serif;
+                    font-style: oblique;
+                    margin : 0;
+                    padding : 0;
+                    border :0;
+                }
+                
+                .div-data{
+                    width:50%;
+                    margin : auto;
+                    background-color: #ffdf80;
+                    font-size : 20px;
+                }
+                .btn{
+                    border: none;
+                    background-color: #ffdf80;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+                .btn:hover{
+                    color : orange;
+                }
+
+            </style>
         </head>
         <body>
-            <h1>"Welcome to register page"</h1>
-            <div>
-                <form class="formSubmit" action="register" method="GET">
-                <input type="text" name="id" placeholder="id"/>
-                <input type="text" name="username" placeholder="username"/>
-                <input type="password" name="password" placeholder="password"/>
-                
-                <button>submit</button>
+            <h1>Registration Page</h1>
+            <div class="div-data">
+                <form class="formSubmit" action="/register" method="POST">
+                <input type="hidden"  name="dataType" value="0"/>
+                <input type="radio" id="student" name="pageType" value="1"/>
+                <label for="student">Student</label><br>
+                <input type="radio" id="faculty" name="pageType" value="2"/>
+                <label for="faculty">Faculty</label><br>
+                <button class="btn">Submit</button>
                 
                 </form>
             </div>
         </body>
     </html>
-<%--</f:view>--%>
