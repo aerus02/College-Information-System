@@ -17,6 +17,14 @@
             <title>CIS-TimeTable</title>
         </head>
         <body>
+             <%
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires",0);
+            response.setHeader("Pragma","no-cache");
+            if(session.getAttribute("name") == null)
+                response.sendRedirect("/home");
+            %>
             <header class="top1">Welcome,You are logged in as ${name}</header>
 
             <nav class="top2">
@@ -93,7 +101,6 @@
                         <%=courses.get(timeTable.get(i).get(j)).getCourseName() %>
                         
                     </p>
-                <!--<p class="tt-elems"><%=courses.get(timeTable.get(i).get(j)).get %></p></td>-->
                 <%}
                 %>
                 

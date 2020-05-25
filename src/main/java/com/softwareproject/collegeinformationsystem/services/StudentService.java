@@ -101,4 +101,8 @@ public class StudentService {
         return i;
     }
     
+    public void DeleteByIDService(int studentID){
+        studentRepository.deleteById(studentID);
+    }
+    
 }

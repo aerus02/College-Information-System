@@ -95,21 +95,59 @@ public class RequestController {
         
         session.invalidate();
         
-        //res.sendRedirect("login");
+//        res.sendRedirect("login");
         return "index";
     }
      
     @RequestMapping("/change-password")
-     public String ChangePasswordFunction(@RequestParam("password") String pword,HttpServletRequest req,HttpServletResponse res) throws IOException{
-        HttpSession session = req.getSession();
+     public ModelAndView ChangePasswordFunction(HttpServletRequest req,HttpServletResponse res) throws IOException{
+        System.out.println("ChangePasswordFunction is called in controller");
+        boolean check = checkLogin(req);//goes back to home or same page
+        if(!check){
+            try{
+                res.sendRedirect("/login");
+            }
+            catch(Exception e){
+                System.out.println(e +" -error");
+                return new ModelAndView("index");
+            }
+        }
+         
+         HttpSession session = req.getSession();
         //process it.-take username and curopass aswell
 //        session.setAttribute("username", null);
 //        session.setAttribute("password",null);
 //        session.setAttribute("userType",0);
         
+        String username = (String)session.getAttribute("username");
+        String password = (String)session.getAttribute("password");
+        String submitCheck = req.getParameter("submitCheck");
+        if(submitCheck == null) return new ModelAndView("changepasswordpage");
+        String oldpass = req.getParameter("oldpass");
+        String newpass = req.getParameter("newpass");
+        String renewpass = req.getParameter("renewpass");
+        UserService userService = new UserService(userRepository);
+        User user = userService.FindByUsernameService(username);
+        if(user == null || newpass == null || oldpass == null || renewpass == null){
+            return new ModelAndView("changepasswordpage");
+        }
+        if(!newpass.equals(renewpass) || !oldpass.equals(user.getPassword()) || newpass.length() < 6) return new ModelAndView("changepasswordpage");
+        int userID = user.getUserID();
+        userService.DeleteEntityService(userID);
+        user = new User();
+        user.setUserID(userID);
+        user.setPassword(newpass);
+        user.setUsername(username);
+        userService.SaveUser(user);
+        session.setAttribute("password",newpass);
+        try{
+           res.sendRedirect("/home");
+       }
+       catch(Exception e){
+           System.out.println("Error" + e);
+       }    
         
-        res.sendRedirect("login");
-        return "index";
+        return new ModelAndView("index");
     }
      
      
@@ -125,7 +163,9 @@ public class RequestController {
         
         HttpSession session = req.getSession();
         //added lately
-        if((session == null ||password == null || username == null)  && session.getAttribute("username") != null && session.getAttribute("password")!= null){
+//        if((session == null ||password == null || username == null)  && session.getAttribute("username") != null && session.getAttribute("password")!= null){
+        if((password == null || username == null)  && session.getAttribute("username") != null && session.getAttribute("password")!= null){
+
             if((int)session.getAttribute("userType") == 1){
                 return "homepageadmin";
             }
@@ -134,11 +174,11 @@ public class RequestController {
             }
             else return "homepagestudent";
         }//added lately
-       
+       System.out.println("Check1");
         session.setAttribute("username",username);
         session.setAttribute("password",password); 
-        
-        res.setHeader("Cache-Control","must-revalidate");
+        System.out.println("Check2");
+//        res.setHeader("Cache-Control","must-revalidate");
         //res.setHeader("Cache-Control","no-cache,no-store");//,must-revalidate");   
         
         User user = new User();
@@ -150,7 +190,7 @@ public class RequestController {
             AdminService adminService = new AdminService(adminRepository);
             FacultyService facultyService = new FacultyService(facultyRepository);
             StudentService studentService = new StudentService(studentRepository);
-            
+            System.out.println("Check3");
             List<User> list = userService.SearchUserByUsernameService(user);
             if(list != null){
                 User listUser;
@@ -194,6 +234,7 @@ public class RequestController {
             }
                
         }
+        System.out.println("Check4");
        try{
            res.sendRedirect("/login");
        }

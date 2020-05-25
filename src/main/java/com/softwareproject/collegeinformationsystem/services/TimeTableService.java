@@ -57,19 +57,19 @@ public class TimeTableService {
             if(temporaryTable == null) continue;
             j = temporaryTable.getTimings1();
             if(j != -1){//arr - check again arr[(j-1)/5][j%9],from 1 to 45
-                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
+                arr[(j-1)/9][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
             j = temporaryTable.getTimings2();
             if(j != -1){
-                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
+                arr[(j-1)/9][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
              j = temporaryTable.getTimings3();
             if(j != -1){
-                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
+                arr[(j-1)/9][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
              j = temporaryTable.getTimings4();
             if(j != -1){
-                arr[(j-1)/5][(j-1)%9] = i;//temporaryTable.getCourseID();
+                arr[(j-1)/9][(j-1)%9] = i;//temporaryTable.getCourseID();
             }
         }
         ArrayList<ArrayList<Integer>> timeTableList = new ArrayList<>();

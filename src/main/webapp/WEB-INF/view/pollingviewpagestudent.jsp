@@ -15,11 +15,19 @@
 
     <html>
         <head>
-            <link href="css/studentprofileviewstyle.css" type="text/css" rel="stylesheet"><link/>
+            <link href="css/pollingviewstyle.css" type="text/css" rel="stylesheet"><link/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>CIS-Polling</title>
         </head>
         <body>
+             <%
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires",0);
+            response.setHeader("Pragma","no-cache");
+            if(session.getAttribute("name") == null)
+                response.sendRedirect("/home");
+            %>
            <header class="top1">Welcome,You are logged in as ${name}</header>
 
             <nav class="top2">
@@ -41,38 +49,48 @@
             <% 
            int i = 1;
            List<Polling> polls = (List<Polling>)request.getAttribute("polls");
-          
+           int studentID = (int)request.getAttribute("studentID");
             %>
             <%
             if(polls != null){
             for(Polling t: polls){
             %>
-            <table>
-                <tr> <%=i++%> . <%=t.getHeading() %></tr> 
-                <tr> <%= t.getDescription()%> </tr>
-                <tr> <%= t.getOption1()%> </tr>
-                <tr> <%= t.getOption2()%> </tr>
-                <tr> <%= t.getOption3()%> </tr>
-                <tr> <%= t.getOption4()%> </tr>
+                <div class="poll-box">
+                <div class="poll-hea"> <%=i++%> . <%=t.getHeading() %></div>
+                <div class="poll-desc"> <%= t.getDescription()%></div>
+                
+                <div class="poll-opts">
                 <form action="/polling-participate" method="POST" >
+                    <input type="hidden" name="pollID" value="<%= t.getPollID()%>">
+                    <input type="hidden" name="studentID" value="<%= studentID%>">
+                
+                <input type="radio" name="option" value="1">
                 <label><%= t.getOption1()%></label><br>
-                <input type="radio" name="option" value="1"><br>
+                
+                <input type="radio" name="option" value="2">
                 <label><%= t.getOption2()%></label><br>
-                <input type="radio" name="option" value="2"><br>
+                
+                <input type="radio" name="option" value="3">
                 <label><%= t.getOption3()%></label><br>
-                <input type="radio" name="option" value="3"><br>
+                
+                <input type="radio" name="option" value="4">
                 <label><%= t.getOption4()%></label><br>
-                <input type="radio" name="option" value="4"><br>
-                <button onclick="alert('Details Submitted')">Send poll option </button>
+                <button class="btn-poll" onclick="alert('Details Submitted')">Send poll option </button>
                 </form>
-                <tr>Date Created : <%= t.getDateCreated()%></tr>
-                        
-           </table>
+                </div>
+                <div class="poll-date">
+                Date Created : <%= t.getDateCreated()%>
+                </div>
+                </div>
+           
              <br>
             <%  }}else{
             %>
-            <h3>No polls to display</h3>
+            <div class="nildata">No notices to display</div>
              <%}%>
-
+              </div>
+            <div style="height:50px;"></div>
+            <footer class="bottom">college information system</footer>	
+           
         </body>
     </html>

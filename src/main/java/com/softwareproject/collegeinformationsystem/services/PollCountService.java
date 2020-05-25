@@ -29,16 +29,35 @@ public class PollCountService {
     
     public List<Integer> FindPollIDListByStudentIDService(int studentID){
         List<PollCount> pollCounts = pollCountRepository.findByStudentID(studentID);
+        
         List<Integer> pollIDs = new ArrayList<>();//returning list ,not arr
         int i;
         for(i = 0;i < pollCounts.size(); i+=1){
-            pollIDs.add(i,pollCounts.get(i).getStudentID());
+            if(pollCounts.get(i).getOption()==0)
+            pollIDs.add(i,pollCounts.get(i).getPollID());
         }
         return pollIDs;
     }
+     public List<PollCount> FindAllService(){
+        List<PollCount> pollCounts = new ArrayList<>();
+        
+        Iterable<PollCount> iterableLinks = pollCountRepository.findAll();
+        for (PollCount t : iterableLinks) 
+            pollCounts.add(t); 
+        return pollCounts;
+    }
     
     public List<PollCount> FindByPollIDService(int pollID){
-        return pollCountRepository.findByPollID(pollID);
+        //return pollCountRepository.findByPollID(pollID);
+        List<PollCount>pollCountList = FindAllService();
+//        System.out.println("pollcountservice-findall");
+//        System.out.println(pollCountList);
+        List<PollCount>reqList = new ArrayList<>();
+        for(int i = 0; i < pollCountList.size(); i +=1){
+            if(pollCountList.get(i).getPollID() == pollID) reqList.add(pollCountList.get(i));
+        }
+//        System.out.println(reqList);
+        return reqList;
     }
     
     public List<Integer> FindCountsByPollService(int pollID){
@@ -65,4 +84,69 @@ public class PollCountService {
         return pollListCounts;
     }
     
+    public boolean ExistByIDService(int pollCountID){
+        return pollCountRepository.existsById(pollCountID);
+    }
+    
+    public long FindCountService(){
+        return pollCountRepository.count();
+    }
+    
+    public int SaveEntityService(PollCount pollCount ){
+        long size = FindCountService();
+        boolean check;
+        int i;
+        for(i = 1;i < size+2; i+=1){
+            check = ExistByIDService(i);
+            if(!check) break;
+        }
+        pollCount.setPollcountID(i);
+        pollCountRepository.save(pollCount);
+        return i;
+    }
+    
+    public void SaveEntityListService(int pollID,int courseID,List<Integer>studentIDs){
+        PollCount pollCount;
+        for(int i = 0; i < studentIDs.size();i +=1){
+            pollCount = new PollCount();
+            pollCount.setCourseID(courseID);
+            pollCount.setStudentID(studentIDs.get(i));
+            pollCount.setPollID(pollID);
+            SaveEntityService(pollCount);
+        }
+    }
+    
+    public void DeleteEntityService(int pollCountID){
+        pollCountRepository.deleteById(pollCountID);
+    }
+    
+    public void DeleteEntityByPollIDService(int pollID){
+//        List<PollCount>pollCounts = pollCountRepository.findByPollID(pollID);
+        List<PollCount>pollCounts = FindByPollIDService(pollID);
+        for(int i = 0; i < pollCounts.size(); i +=1){
+            DeleteEntityService(pollCounts.get(i).getPollcountID());
+        }
+    }
+    
+    public void SaveEntityWithIDService(PollCount pollCount){
+        pollCountRepository.save(pollCount);
+    }
+    
+    public void UpdateEntityByPollIDAndStudentID(int pollID,int studentID,int option){
+         List<PollCount> pollCounts = FindByPollIDService(pollID);
+//         System.out.println("In pollcountserv - upda..func");
+//         System.out.println(pollCounts);
+         int i;
+         for(i = 0; i < pollCounts.size(); i+=1){
+             if(pollCounts.get(i).getStudentID() == studentID) break;
+         }
+//         System.out.println(i +" "+studentID);
+         if(i < pollCounts.size()){
+             PollCount pollCount = pollCounts.get(i);
+             pollCount.setOption(option);
+             DeleteEntityService(pollCount.getPollcountID());
+             SaveEntityWithIDService(pollCount);
+         }
+         
+    }
 }

@@ -22,23 +22,26 @@
                 .div-data{
                     width:50%;
                     margin : auto;
-                    background-color: #ffdf80;
+                    /*background-color: #ffdf80;*/
                     font-size : 20px;
                 }
                 .btn{
                     border: none;
-                    background-color: #ffdf80;
+                    /*background-color: #ffdf80;*/
                     font-size: 20px;
                     cursor: pointer;
                 }
                 .btn:hover{
                     color : orange;
                 }
-
+                .heading{
+                    padding: 50px 50px;
+                    font-size: 40px; 
+                }
             </style>
         </head>
         <body>
-            <h1>Registration Page</h1>
+            <div class="heading">Registration Page</div>
             <div class="div-data">
                 <form class="formSubmit" action="/register" method="POST">
                 <input type="hidden"  name="dataType" value="0"/>

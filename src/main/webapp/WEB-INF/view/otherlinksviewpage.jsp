@@ -15,11 +15,20 @@
 
     <html>
         <head>
+            
             <link href="css/homepagestyle.css" type="text/css" rel="stylesheet"><link/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>CIS-Other Links</title>
         </head>
         <body>
+             <%
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires",0);
+            response.setHeader("Pragma","no-cache");
+            if(session.getAttribute("name") == null)
+                response.sendRedirect("/home");
+            %>
             <header class="top1">Welcome,You are logged in as ${name}</header>
 
             <nav class="top2">

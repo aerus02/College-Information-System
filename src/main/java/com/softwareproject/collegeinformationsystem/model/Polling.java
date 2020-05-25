@@ -167,11 +167,12 @@ public class Polling {
         this.count2 = 0;
         this.count3 = 0;
         this.count4 = 0;
+        this.pollID = 0;
     }
 
     @Override
     public String toString() {
-        return "Polling{" + "heading=" + heading + ", description=" + description + ", option1=" + option1 + ", option2=" + option2 + ", option3=" + option3 + ", option4=" + option4 + ", count1=" + count1 + ", count2=" + count2 + ", count3=" + count3 + ", count4=" + count4 + ", dateCreated=" + dateCreated + ", dateExpired=" + dateExpired + ", courseID=" + courseID + '}';
+        return "Polling{" + "heading=" + heading+ "pollID=" + pollID + ", description=" + description + ", option1=" + option1 + ", option2=" + option2 + ", option3=" + option3 + ", option4=" + option4 + ", count1=" + count1 + ", count2=" + count2 + ", count3=" + count3 + ", count4=" + count4 + ", dateCreated=" + dateCreated + ", dateExpired=" + dateExpired + ", courseID=" + courseID + '}';
     }
     
     public String dataToDescription(){

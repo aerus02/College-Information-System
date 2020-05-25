@@ -101,7 +101,14 @@
             </style>
         </head>
         <body>
-            
+            <%
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires",0);
+            response.setHeader("Pragma","no-cache");
+            if(session.getAttribute("name") == null)
+                response.sendRedirect("/home");
+            %>
              <header class="top1">Welcome,You are logged in as ${name}</header>
 
             <nav class="top2">
@@ -127,10 +134,10 @@
             <div class="items"><div class="blocks"><a href="/students-list">Students List</a></div></div>
             
            
-            <div class="items"><div class="blocks"><a href="/#">Messaging</a></div></div>
             <!--<div class="items"><div class="blocks"><a href="/others-profile">Others Profile</a></div></div>-->
             
             <div class="items"><div class="blocks"><a href="/timetable">TimeTable</a></div></div>
+            <div class="items"><div class="blocks"><a href="javascript:void(0)">Messaging</a></div></div>
 
             </div>
             <footer class="bottom">college information system</footer>	

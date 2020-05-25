@@ -18,6 +18,14 @@
             <title>CIS-Attendance Update</title>
         </head>
         <body>
+             <%
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires",0);
+            response.setHeader("Pragma","no-cache");
+            if(session.getAttribute("name") == null)
+                response.sendRedirect("/home");
+            %>
              <header class="top1">Welcome,You are logged in as ${name}</header>
 
             <nav class="top2">
@@ -34,6 +42,7 @@
             <div class="middle">
                 <div style="height:50px;"></div>
                 <div class="title">Attendance</div>
+                <div class="atten-desc">Enter new value of attendance in percentage below and submit</div>
             <% 
                 int i = 1;
                 int courID = (int)request.getAttribute("courseID");
@@ -56,6 +65,7 @@
                 <th class="table-cells7">Update Attendance</th>
 
                 </tr>
+                </table>
                 
                 <%}else{%>
                 <tr>
@@ -68,39 +78,33 @@
                 <th class="table-cells6">November</th>
                 <th class="table-cells7">Update Attendance</th>
                 </tr>
+            </table>
+            <div class="atten-divoverform">
                 <%}%>
             <%
             for(i = 0; i < attendance.size(); i+=1){
             %>
-            <tr>
-                <td class="index"> <%=i+1%> </td> 
-                <td class="table-cells1"> <%= students.get(i).getName()%> </td>
-                <td class="table-cells2"> <%= students.get(i).getCollegeID()%> </td>
-                <td class="table-cells3"><%= attendance.get(i).get(0)%>  </td>
-                <td class="table-cells4"> <%= attendance.get(i).get(1)%>  </td>
-                <td class="table-cells5"> <%= attendance.get(i).get(2)%>  </td>
-                <td class="table-cells6"> <%= attendance.get(i).get(3)%>  </td>
-                <td class="table-cells6"> <button> Update</button></td>
-             </tr>
-             <tr>
-             <form action="/attendance" method="POST">
-                 <label><%=i+1%></label>
-                 <label><%=students.get(i).getName()%></label>
-                 <label><%=students.get(i).getCollegeID()%></label>
-                 <input type="hidden" name="courseID" value="<%=courID%>"/>
-                 <input type="hidden" name="updateReq" value="1"/>
-                 <input  name="att1" value="<%= attendance.get(i).get(0)%>"/>
-                 <input  name="att2" value="<%= attendance.get(i).get(1)%>"/>
-                 <input  name="att3" value="<%= attendance.get(i).get(2)%>"/>
-                 <input  name="att4" value="<%= attendance.get(i).get(3)%>"/>
-                 <button class=".btn">Update</button>
+            <br>
+             <form class="atten-forms" action="/attendance" method="POST">
+                 <label class="form-elem"><%=i+1%></label>
+                 <label class="form-elem"><%=students.get(i).getName()%></label>
+                 <label class="form-elem"><%=students.get(i).getCollegeID()%></label>
+                 <input class="form-elem" type="hidden" name="courseID" value="<%=courID%>"/>
+                 <input class="form-elem" type="hidden" name="updateReq" value="1"/>
+                 <input class="form-elem" type="hidden" name="studentID" value="<%=students.get(i).getStudentID()%>"/>
+
+                 <input class="form-elem" name="att1" value="<%= attendance.get(i).get(0)%>"/>
+                 <input class="form-elem" name="att2" value="<%= attendance.get(i).get(1)%>"/>
+                 <input class="form-elem" name="att3" value="<%= attendance.get(i).get(2)%>"/>
+                 <input class="form-elem" name="att4" value="<%= attendance.get(i).get(3)%>"/>
+                 <button class="form-elem" class="btn">Update</button>
              </form>
 
-             </tr>
+             <!--</tr>-->
           <%  }
             %>
-            
-            </table>
+            </div>
+            <!--</table>-->
             <!--<div class="desc">These are your course wise and month wise attendance percentages</div>-->
             <%}
             else{

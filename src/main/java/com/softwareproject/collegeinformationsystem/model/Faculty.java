@@ -21,7 +21,7 @@ public class Faculty {
     private int facultyID;
     private int userID;
     private String collegeID;
-    private String name;
+    private String facname;
     private Date dob;
     private String mailID;
     private String phoneNumber;
@@ -55,11 +55,11 @@ public class Faculty {
     }
 
     public String getName() {
-        return name;
+        return facname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.facname = name;
     }
 
     public Date getDob() {
@@ -121,7 +121,7 @@ public class Faculty {
     public Faculty( String collegeID, String name, Date dob, String mailID, String phoneNumber, String gender, String department, Date doj, Date dol) {
         this.userID = 0;
         this.collegeID = collegeID;
-        this.name = name;
+        this.facname = name;
         this.dob = dob;
         this.mailID = mailID;
         this.phoneNumber = phoneNumber;
@@ -134,7 +134,7 @@ public class Faculty {
     public Faculty() {
         this.userID = 0;
         this.collegeID = null;
-        this.name = null;
+        this.facname = null;
         this.dob = null;
         this.mailID = null;
         this.phoneNumber = null;
@@ -146,7 +146,7 @@ public class Faculty {
 
     @Override
     public String toString() {
-        return "Faculty{" + "collegeID=" + collegeID + ", name=" + name + ", dob=" + dob + ", mailID=" + mailID + ", phoneNumber=" + phoneNumber + ", gender=" + gender + ", department=" + department + ", doj=" + doj +  '}';
+        return "Faculty{" + "collegeID=" + collegeID + ", name=" + facname + ", dob=" + dob + ", mailID=" + mailID + ", phoneNumber=" + phoneNumber + ", gender=" + gender + ", department=" + department + ", doj=" + doj +  '}';
     }
     
     

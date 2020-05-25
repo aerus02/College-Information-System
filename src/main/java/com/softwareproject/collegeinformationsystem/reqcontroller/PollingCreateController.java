@@ -8,14 +8,19 @@ package com.softwareproject.collegeinformationsystem.reqcontroller;
 import com.softwareproject.collegeinformationsystem.model.Polling;
 import com.softwareproject.collegeinformationsystem.model.Course;
 import com.softwareproject.collegeinformationsystem.model.Notice;
+import com.softwareproject.collegeinformationsystem.repository.AttendanceRepository;
 import com.softwareproject.collegeinformationsystem.repository.CourseRepository;
 import com.softwareproject.collegeinformationsystem.repository.NoticeRepository;
+import com.softwareproject.collegeinformationsystem.repository.PollCountRepository;
 import com.softwareproject.collegeinformationsystem.repository.UserRepository;
 import com.softwareproject.collegeinformationsystem.repository.PollingRepository;
 import com.softwareproject.collegeinformationsystem.services.CourseService;
+import com.softwareproject.collegeinformationsystem.services.AttendanceService;
+import com.softwareproject.collegeinformationsystem.services.PollCountService;
 import com.softwareproject.collegeinformationsystem.services.NoticeService;
 import com.softwareproject.collegeinformationsystem.services.PollingService;
 import java.sql.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,6 +48,12 @@ public class PollingCreateController {
     
     @Autowired
     PollingRepository pollingRepository;
+    
+    @Autowired
+    PollCountRepository pollCountRepository;
+    
+    @Autowired
+    AttendanceRepository attendanceRepository;
     
     
     public boolean checkLogin(HttpServletRequest req){
@@ -81,6 +92,8 @@ public class PollingCreateController {
         
         CourseService courseService = new CourseService(courseRepository);
         PollingService pollingService = new PollingService(pollingRepository);
+        PollCountService pollCountService = new PollCountService(pollCountRepository);
+       AttendanceService attendanceService = new AttendanceService(attendanceRepository);
         
         System.out.println("PollingCreateFunction ,before logic begins");
         ModelAndView mv;
@@ -135,8 +148,9 @@ public class PollingCreateController {
                 polling.setOption3(Option3);
                 polling.setOption4(Option4);
                 
-                pollingService.SaveEntityService(polling);
-                
+                int pollID = pollingService.SaveEntityService(polling);
+                List<Integer>studentIDs = attendanceService.FindStudentIDsByCourseIDService(course.getCourseID());
+                pollCountService.SaveEntityListService(pollID,course.getCourseID(),studentIDs);
                 
                 try{
                     res.sendRedirect("/home");
@@ -185,7 +199,8 @@ public class PollingCreateController {
         
         NoticeService noticeService = new NoticeService(noticeRepository);
         PollingService pollingService = new PollingService(pollingRepository);
-        
+        PollCountService pollCountService = new PollCountService(pollCountRepository);
+
         System.out.println("PollingDeleteFunction ,before logic begins");
         int pollID = Integer.parseInt(req.getParameter("pollID"));
         ModelAndView mv;
@@ -195,7 +210,12 @@ public class PollingCreateController {
             if(polling != null){
                 Notice notice = new Notice();
                 notice.setHeading("Poll Ended- "+polling.getHeading());
-                 
+                List<Integer>pollCountValues = pollCountService.FindCountsByPollService(pollID);
+                
+                polling.setCount1(pollCountValues.get(0));
+                polling.setCount2(pollCountValues.get(1));
+                polling.setCount3(pollCountValues.get(2));
+                polling.setCount4(pollCountValues.get(3));
                 long d = System.currentTimeMillis();
 		Date date = new Date(d);
                 notice.setDateCreated(date);
@@ -204,8 +224,10 @@ public class PollingCreateController {
                 notice.setCourseID(polling.getCourseID());
                 
                 noticeService.SaveEntityService(notice);
+                pollingService.DeleteByIDService(pollID);
+            pollCountService.DeleteEntityByPollIDService(pollID);
             }
-            pollingService.DeleteByIDService(pollID);
+            
         }
         
         try{
@@ -216,6 +238,63 @@ public class PollingCreateController {
              return new ModelAndView("index");
          }
          mv = new ModelAndView("index");
+
+         return mv;
+        
+    }
+    
+     @RequestMapping("/polling-participate")
+    public ModelAndView PollingParticipateFunction(HttpServletRequest req,HttpServletResponse res){
+        System.out.println("PollingParticipateFunction is called in controller");
+        boolean check = checkLogin(req);
+        if(!check){
+            try{
+                res.sendRedirect("/login");
+            }
+            catch(Exception e){
+                System.out.println(e +" -error");
+                return new ModelAndView("index");
+            }
+        }
+        
+        HttpSession session = req.getSession();
+        String username = (String)session.getAttribute("username");
+        System.out.println((String)session.getAttribute("username") + (String)session.getAttribute("password"));
+        
+        
+        PollCountService pollCountService = new PollCountService(pollCountRepository);
+
+        System.out.println("PollingParticipateFunction ,before logic begins");
+        int pollID = Integer.parseInt(req.getParameter("pollID"));
+         int studentID = Integer.parseInt(req.getParameter("studentID"));
+         if(req.getParameter("option") == null){
+             try{
+             res.sendRedirect("/polling-view");
+            }
+            catch(Exception e){
+                System.out.println(e +" -error");
+                return new ModelAndView("homepagestudent");
+            }
+             
+         }
+          int option = Integer.parseInt(req.getParameter("option"));
+//          System.out.println("PollingParticipateFunction ,"+pollID+""+studentID+" "+option);
+        ModelAndView mv;
+        int userType = (int)session.getAttribute("userType");
+        if(userType == 3){
+            
+            pollCountService.UpdateEntityByPollIDAndStudentID(pollID,studentID,option);
+            
+        }
+        
+        try{
+             res.sendRedirect("/home");
+         }
+         catch(Exception e){
+             System.out.println(e +" -error");
+//             return new ModelAndView("homepagestudent");
+         }
+         mv = new ModelAndView("homepagestudent");
 
          return mv;
         

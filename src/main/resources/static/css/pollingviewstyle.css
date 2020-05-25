@@ -1,4 +1,5 @@
 
+
 *{
     background-color: #87ff87;
     font-family:sans-serif;
@@ -59,7 +60,7 @@
 }
 
 .tab{                    
-    width : 90%;
+    width : 70%;
     margin:auto;
     padding : 10px 10px;
     background-color: #ffdf80;
@@ -67,7 +68,7 @@
     font-size: 20px;
 
 }
-.tab,th,td{
+.tab,.tab th,.tab td{
 border: 1px solid black;
 border-collapse: collapse;
 background-color: #ffdf80;
@@ -79,54 +80,56 @@ th{
 }
 
 td{
-    text-align : left;
+    text-align :center;
 }
 
 .title{
 text-align: center;
 padding : 5px 0px;
 font-size: 23px;
+
 }
 
-.atten-desc{
-   padding : 5px 5px;
-    font-size: 19px; 
-}
-
-.desc, .nildata{
-     text-align : center;
+.nildata{
+    text-align : center;
     color : black;
-    font-size: 17px;
-    padding-top:20px;
-    padding-left:10px;
-    
-}
-
-.atten-forms{
-    font-size:18px;
-    
-}
-
-.atten-divoverform{
-    width: 80%;
-    background-color: #ffdf80;
-
-}
-.form-elem{
-    font-size:18px;
-}
-
-.btn{
-    border: none;
-    background-color: #ffdf80;
     font-size: 20px;
-    cursor: pointer;
+    padding : 10px 10px;
 }
-.btn:hover{
-    color : orange;
+.poll-date,.delete-poll-div{
+    padding-left : 50px;
+    padding-top : 10px;
+}
+.poll-desc{
+    padding-left : 40px;
+    padding-top : 10px;
+}
+.poll-hea{
+    padding-left : 70px;
+    padding-top : 10px;
+}
+.poll-opts{
+    padding-left : 50px;
+    padding-top : 10px;
+}
+.create-poll-div{
+    padding-left : 60px;
+    padding-top : 10px;
+}
+.btn-poll{
+border: none;
+font-size: 19px;
+cursor: pointer;
 }
 
-/*.form-elem input{
-    size:"8";
-    align:"center";
-}*/
+.btn-poll:hover,.btn-notice-create:hover{
+color : orange;
+}
+.poll-box{
+    padding-left : 40px;
+    font-size: 19px;
+    padding-top : 20px;
+}
+.pollingcreateinputs{
+    padding:10px 0px;
+}

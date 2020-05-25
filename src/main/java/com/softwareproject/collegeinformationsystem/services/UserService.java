@@ -83,5 +83,8 @@ public class UserService {
         userRepository.save(user);
     }
     
+    public void DeleteEntityService(int userID){
+        userRepository.deleteById(userID);
+    }
     
 }

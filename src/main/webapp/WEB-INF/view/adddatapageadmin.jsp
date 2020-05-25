@@ -12,12 +12,33 @@
             <title>CIS-Add Data</title>
         </head>
         <body>
-           
-            <div>Welcome,You are logged in as ${username}</div>
-            
-            <div>Student Data</div>
-            
-            <div>
+            <%
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires",0);
+            response.setHeader("Pragma","no-cache");
+            if(session.getAttribute("name") == null)
+                response.sendRedirect("/home");
+            %>
+            <header class="top1">Welcome,You are logged in as ${name}</header>
+
+            <nav class="top2">
+            	<div id="nav-bar-div">
+            		<ul>
+            			<li><a href="/logout">Logout</a></li>
+            			<li><a href="/change-password">Change Password</a></li>
+                                <li><a href="/home">Home</a></li>
+                        </ul>
+            	</div>
+
+            </nav>
+            <div class="middle">
+                <div style="height:50px;"></div>
+            <div>Enter data without any leading or ending spaces</div>
+            <div class="title">Student Data</div>
+            <br>
+            <div class="adddata-divform">
+                
             <form action="/add-data-student" method="POST" >
                 <label for="stuName">Student Name</label>
                 <input type="text"  name="stuName" ><br>
@@ -26,14 +47,14 @@
                 <label for="stuDOB">Date of Birth</label>
                 <input type="text" placeholder="format:YYYY-MM-DD" name="stuDOB"><br>
 
-                <button onclick="alert('Details Submitted')">Enter Data</button>
+                <button class="btn" onclick="alert('Details Submitted')">Enter Data</button>
             </form>
             </div>
             
-            
-            <div>Faculty Data</div>
-            
-            <div>
+            <br>
+            <div class="title">Faculty Data</div>
+            <br>
+            <div class="adddata-divform">
             <form action="/add-data-faculty" method="POST" >
                 <label for="facName">faculty Name</label>
                 <input type="text"  name="facName" ><br>
@@ -42,12 +63,12 @@
                 <label for="facDOB">Date of Birth</label>
                 <input type="text" placeholder="format:YYYY-MM-DD" name="facDOB"><br>
 
-                <button onclick="alert('Details Submitted')">Enter Data</button>
+                <button class="btn" onclick="alert('Details Submitted')">Enter Data</button>
             </form>
             </div>
-            
-            <div>Course Data</div>
-            
+            <br>
+            <div class="title">Course Data</div>
+            <div class="adddata-divform">
             <form action="/add-data-course" method="POST" >
                 <label for="couName">Course Name</label>
                 <input type="text"  name="couName" ><br>
@@ -56,12 +77,15 @@
                 <label for="facCollegeID">Faculty ID</label>
                 <input type="text"  name="facCollegeID"><br>
 
-                <button onclick="alert('Details Submitted')">Enter Data</button>
+                <button class="btn" onclick="alert('Details Submitted')">Enter Data</button>
             </form>
+            </div>
+            <br>
+            <div class="title">Course-TimeTable Data</div>
             
-            <div>Course-TimeTable Data</div>
-            
-            <div>
+            <div> Fill all four values,repeat same values if less than four</div>
+            <div class="adddata-divform">
+                
             <form action="/add-data-timetable" method="POST" >
                
                 
@@ -84,26 +108,26 @@
                 <label for="timings4">Time Slot4</label>
                 <input type="text"  placholder="id between 1 to 45" name="timings4"><br>
 
-                <button onclick="alert('Details Submitted')">Enter Data</button>
+                <button class="btn" onclick="alert('Details Submitted')">Enter Data</button>
             </form>
             </div>
+            <br>
+            <div class="title">OtherLinks Data</div>
             
-            <div>OtherLinks Data</div>
-            
-            <div>
+            <div class="adddata-divform">
             <form action="/add-data-otherlinks" method="POST" >
                <label for="url">URL</label>
                 <input type="text"  name="url"><br>
                 <label for="desc">Description</label>
                 <input type="text"  name="desc" ><br>
                
-                <button onclick="alert('Details Submitted')">Enter Data</button>
+                <button class="btn" onclick="alert('Details Submitted')">Enter Data</button>
             </form>
             </div>
-            
-            <div>Course-StudentsList Data</div>
+            <br>
+            <div class="title">Course-StudentsList Data</div>
            <div>Add course ids and list of studentids enrolled in the course </div>
-            <div>
+            <div class="adddata-divform">
             <form action="/add-data-attendance" method="POST" >
               
                 <label for="couCollegeID">Course ID</label>
@@ -129,9 +153,15 @@
                 <label for="studentID10">Student ID 10</label>
                 <input type="text"  name="studentID10" ><br>
                 
-                <button onclick="alert('Details Submitted')">Enter Data</button>
+                <button class="btn" onclick="alert('Details Submitted')">Enter Data</button>
             </form>
+                
             </div>
+           <br>
+           </div>
+            <div style="height:50px;"></div>
+            <footer class="bottom">college information system</footer>	
+            
             
         </body>
     </html>

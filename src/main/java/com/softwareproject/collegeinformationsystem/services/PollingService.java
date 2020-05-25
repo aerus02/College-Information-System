@@ -73,7 +73,7 @@ public class PollingService {
         return pollingRepository.count();
     }
     
-    public void SaveEntityService(Polling poll ){
+    public int SaveEntityService(Polling poll ){
         long size = FindCountService();
         boolean check;
         int i;
@@ -83,6 +83,7 @@ public class PollingService {
         }
         poll.setPollID(i);
         pollingRepository.save(poll);
+        return i;
     }
     
     public Polling FindByIDService(int pollID){

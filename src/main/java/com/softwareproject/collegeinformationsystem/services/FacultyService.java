@@ -93,4 +93,8 @@ public class FacultyService {
         facultyRepository.save(faculty);
         return i;
     }
+    
+    public void DeleteByIDService(int facultyID){
+        facultyRepository.deleteById(facultyID);
+    }
 }

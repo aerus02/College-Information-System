@@ -22,13 +22,13 @@
                 .div-data{
                     width:50%;
                     margin : auto;
-                    background-color: #ffdf80;
                     font-size : 20px;
+                    padding :20px;
                 }
                 .btn{
                     border: none;
-                    background-color: #ffdf80;
-                    font-size: 20px;
+/*                    background-color: #ffdf80;*/
+                    font-size: 22px;
                     cursor: pointer;
                 }
                 .btn:hover{
@@ -38,15 +38,15 @@
             </style>
         </head>
         <body>
-            <h1>Registration Page Student</h1>
+            <h1 style="padding : 20px;padding-left:40px;">Registration Page Student</h1>
             <div class="div-data">
                 <form class="formSubmit" action="/register" method="POST">
                 <input type="hidden"  name="pageType" value="1"/>
                 <input type="hidden"  name="dataType" value="1"/>
                 <label for="uname">Username</label>
-                <input type="text" id="uname"  name="uname" /><br>
+                <input type="text" id="uname" placeholder="Atleast 6 characters"  name="uname" /><br>
                 <label for="password">Password</label>
-                <input type="password" id="password"  name="password" /><br>
+                <input type="password" id="password" placeholder="Atleast 6 characters"  name="password" /><br>
                 <label for="repass">Re-Enter Password</label>
                 <input type="password" id="repass"  name="repass" /><br>
                 <label for="stuname">Name</label>

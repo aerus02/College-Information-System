@@ -1,1 +1,96 @@
 
+*{
+    background-color: #87ff87;
+    font-family:sans-serif;
+    font-style: oblique;
+    margin : 0;
+    padding : 0;
+    border :0;
+}
+
+.top1{
+    background-color: #ff4d4d;
+    color: white;
+    padding : 18px 0px;
+    padding-left: 10px;
+    font-size:24px;
+}
+
+.top2{
+    background-color:black;
+}
+
+.top2 ul{
+    list-style: none;
+    padding:10px 0px;
+    background-color:black;
+}
+
+.top2 li{
+    display:inline;
+    background-color:black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top2 a{
+    color : #fff;
+    text-decoration: none;
+    font-size : 18px;
+    padding:0px 15px;
+    background-color:transparent !important;
+}
+
+.top2 a:hover{
+    color: orange;
+}
+
+
+.middle{
+ margin:auto;
+}
+
+.bottom{
+    text-align : left;
+    background-color: black;
+    color : white;
+    font-size: 14px;
+    padding : 5px 10px;
+}
+
+
+.title{
+text-align: center;
+padding : 5px 0px;
+font-size: 23px;
+
+}
+.btn{
+border: none;
+font-size: 16px;
+cursor: pointer;
+}
+.btn:hover{
+color : orange;
+}
+
+.adddata-divform{
+    width:60%;
+    margin : auto;
+    font-size : 18px;
+    /*background-color: #ffdf80;*/
+    
+}
+form{
+    /*background-color: #ffdf80;*/
+}
+input{
+    /*background-color: #ffdf80;*/
+    font-size : 15px;
+    text-align:center;
+    border-bottom: 1px solid black;
+    padding : 10px 0px;
+}
+label{
+    padding : 10px 0px;
+}

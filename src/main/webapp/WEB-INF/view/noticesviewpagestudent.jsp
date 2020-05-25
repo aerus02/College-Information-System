@@ -13,11 +13,20 @@
 
     <html>
         <head>
+            
             <link href="css/studentprofileviewstyle.css" type="text/css" rel="stylesheet"><link/>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <title>CIS-Notices</title>
         </head>
         <body>
+             <%
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires",0);
+            response.setHeader("Pragma","no-cache");
+            if(session.getAttribute("name") == null)
+                response.sendRedirect("/home");
+            %>
             <header class="top1">Welcome,You are logged in as ${name}</header>
 
             <nav class="top2">
@@ -46,11 +55,21 @@
             for(Notice t: notices){
             %>
             <table class="notices-tab">
-                <tr class="notices-hdg"> <%=i++%> . <%=t.getHeading() %></tr> 
-                <tr class="notices-mini"> <%= t.getDescription()%> </tr>
-                <tr class="notices-desc"> <%= t.getCompleteDescription()%> </tr>
-                <tr class="notices-date">Date Created : <%= t.getDateCreated()%></tr>
+                <tr class="notices-hdg"> 
+                    <th>Title </th>
+                <td><div class="notice-cls"><%=i++%> . <%=t.getHeading() %></div></td></tr> 
+            <tr class="notices-mini"> 
+                    <th>Short Description </th>
+                <td> <div class="notice-cls"><%= t.getDescription()%> </div></td></tr>
+                <tr class="notices-desc"> 
+                    <th>Notice </th>
+                <td><div class="notice-cls"><%= t.getCompleteDescription()%> </div></td></tr>
+                <tr class="notices-date"> 
+                    <th>Date Created : </th>
+                    <td><div class="notice-cls"> <%= t.getDateCreated()%></div></td></tr>
            </table>
+           
+             <br>
              <br>
             <%  }}else{
             %>

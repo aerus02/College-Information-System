@@ -23,19 +23,19 @@ public class PollCount {
     private int courseID;
     private int studentID;
     @Column(columnDefinition = "integer default 0")
-    private int option;//selected by user1,2,3,4
+    private int option1;//selected by user1,2,3,4
 
     public PollCount() {
         this.pollcountID = 0;
         this.courseID= 0;
         this.studentID = 0;
-        this.option = 0;
+        this.option1 = 0;
         this.pollID = 0;
     }
 
     @Override
     public String toString() {
-        return "PollCount{" + "pollcountID=" + pollcountID + ", courseID=" + courseID + ", studentID=" + studentID + ", option=" + option + '}';
+        return "PollCount{" + "pollcountID=" + pollcountID + ", pollID=" + pollID+ ", courseID=" + courseID + ", studentID=" + studentID + ", option=" + option1 + '}';
     }
     
     public int getPollcountID() {
@@ -71,11 +71,11 @@ public class PollCount {
     }
 
     public int getOption() {
-        return option;
+        return option1;
     }
 
     public void setOption(int option) {
-        this.option = option;
+        this.option1 = option;
     }
     
 }

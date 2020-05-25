@@ -106,19 +106,68 @@ font-size: 23px;
     width : 70%;
     margin:auto;
     padding : 10px 10px;
-    background-color: #b3b3ff;
-
-    font-size: 20px;
-    margin-top: 20px;
+    /*background-color: #b3b3ff;*/
+    background-color:#ffdf80;
+    font-size: 18px;
+    margin-top: 18px;
 }
 
-.notices-tab,.notices-tab th,.notices-tab td{
+.notices-tab,.notices-tab th,.notices-tab tr,.notices-tab td{
 border: 1px solid black;
 border-collapse: collapse;
-background-color: #b3b3ff;
+background-color: #ffdf80;
 padding : 5px 5px;
 }
 
-.notices-mini{
-    
+.notices-tab th{
+    width:30%;
+}
+notices-tab tr td div{
+    font-size: 18px;
+    background-color: #ffdf80;
+}
+.notice-cls{
+    background-color: #ffdf80;
+}
+.create-notice{
+    padding : 10px 0px;
+    background-color: #ffdf80;
+    font-size : 18px;
+}
+
+.btn-notice{
+border: none;
+background-color: #ffdf80;
+font-size: 16px;
+cursor: pointer;
+}
+.btn-notice:hover,.btn-notice-create:hover{
+color : orange;
+}
+.btn-notice-create{
+border: none;
+background-color: #87ff87;
+font-size: 16px;
+cursor: pointer;
+}
+.noticecreateform{
+    width :70%;
+    margin : auto;
+    background-color: #ffdf80;
+
+}
+.noticecreateform input{
+    /*background-color: #ffdf80;*/
+    font-size : 15px;
+    text-align:center;
+    border-bottom: 1px solid black;
+    padding : 10px 0px;
+}
+.noticecreateform label{
+    padding : 10px 0px;
+}
+.noticecreate-input{
+    padding:10px 0px;
+    /*margin: black;*/
+    border: black 3px;
 }

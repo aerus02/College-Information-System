@@ -94,14 +94,15 @@ public class RegistrationController {
                 if(username == null || password == null || repassword == null || !password.equals(repassword) || user != null){
                     return "registerpagestudent";
                 }
-                
+                if(username.length() < 6 || password.length() < 6) return "registerpagestudent";
                 Student studentTemp = studentService.FindByCollegeIDService(stuID);
                 if(studentTemp == null || !studentTemp.getName().equals(stuName) || !studentTemp.getDob().equals(stuDOB) || studentTemp.getUserID() >0) return "registerpagestudent";
-                
+                if(studentTemp.getUserID() > 0)return "registerpagestudent";
                 user = new User();
                 user.setUsername(username);
                 user.setPassword(password);
                 int userID = userService.SaveEntityService(user);
+                studentService.DeleteByIDService(studentTemp.getStudentID());
                 student.setUserID(userID);
                 studentService.SaveEntityService(student);
                 
@@ -148,14 +149,15 @@ public class RegistrationController {
                 if(username == null || password == null || repassword == null || !password.equals(repassword) || user != null){
                     return "registerpagefaculty";
                 }
-                
+                if(username.length() < 6 || password.length() < 6) return "registerpagefaculty";
                 Faculty facultyTemp = facultyService.FindByCollegeIDService(facID);
                 if(facultyTemp == null || !facultyTemp.getName().equals(facName) || !facultyTemp.getDob().equals(facDOB) || facultyTemp.getUserID() >0) return "registerpagefaculty";
-                
+                if(facultyTemp.getUserID() > 0) return "registerpagefaculty";;
                 user = new User();
                 user.setUsername(username);
                 user.setPassword(password);
                 int userID = userService.SaveEntityService(user);
+                facultyService.DeleteByIDService(facultyTemp.getFacultyID());
                 faculty.setUserID(userID);
                 facultyService.SaveEntityService(faculty);
                 

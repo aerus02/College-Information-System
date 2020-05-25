@@ -117,6 +117,10 @@ public class PollingViewController {
         if(userType == 1){
             polls = pollingService.FindByCourseIDService(0);
             mv = new ModelAndView("pollingviewpageadmin");
+            List<Integer>pollListIDs = new ArrayList<>();
+            for(int i =0;i < polls.size(); i+=1) pollListIDs.add(i,polls.get(i).getPollID());
+            List<List<Integer> >pollListCounts = pollCountService.FindCountsByPollListService(pollListIDs);
+            mv.addObject("pollListCounts",pollListCounts);
             mv.addObject("polls",polls);
             return mv;
         
@@ -140,9 +144,13 @@ public class PollingViewController {
 //            List<Integer>courseIDs = attendanceService.FindCourseIDsByStudentIDService(student.getStudentID());
 //            polls = pollingService.FindPollingsByCourseIDsService(courseIDs);
             List<Integer>pollIDs = pollCountService.FindPollIDListByStudentIDService(student.getStudentID());
+//            System.out.println(student +"poling vie controller stu view");
+//            System.out.println(pollIDs);
             polls = pollingService.FindByIDsListService(pollIDs);
+//            System.out.println(polls);
             mv = new ModelAndView("pollingviewpagestudent");
             mv.addObject("polls",polls);
+            mv.addObject("studentID",student.getStudentID());
             return mv;
         }
     }
