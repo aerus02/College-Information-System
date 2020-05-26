@@ -2,16 +2,16 @@
 A web application for making institute information available faster and easier
 
 ## Table of Contents
-* [Download war file](##download-war-file)
-* [Setup](##setup)
-* [Technologies](##technologies)
-* [Usage](##usage)
-* [Login,Registration procedure](##login,registration-procedure)
-* [Accessing Database](##accessing-database)
-* [Features](##features)
-* [Data to be filled by admin](##data-to-be-filled-by-admin)
-* [Data to be filled by faculty](##data-to-be-filled-by-faculty)
-* [Data to be filled by student](##data-to-be-filled-by-student)
+* [Download war file](#download-war-file)
+* [Setup](#setup)
+* [Technologies](#technologies)
+* [Usage](#usage)
+* [Login,Registration procedure](#login-and-registration-procedure)
+* [Accessing Database](#accessing-database)
+* [Features](#features)
+* [Data to be filled by admin](#data-to-be-filled-by-admin)
+* [Data to be filled by faculty](#data-to-be-filled-by-faculty)
+* [Data to be filled by student](#data-to-be-filled-by-student)
 
 ## Download war file
 [Click Here](https://drive.google.com/open?id=1v8eFJjwbSGY027C-H5f3CgCXEZnPnLQt)
@@ -41,7 +41,7 @@ Username - admin
 Password - @admin12
 ```
 
-## Login,Registration Procedure
+## Login And Registration Procedure
 That means only admin can first login and even register functions 
 won't work until database is partially populated by admin.
 
